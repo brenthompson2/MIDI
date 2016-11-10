@@ -1,6 +1,21 @@
 Andrew Ellis and Brendan Thompson Git Repo
 MIDI Fall 2016 Transylvania University
 
+**** GIT Instructions ****
+
+To pull from repo:
+	git fetch
+	get pull
+
+To push to repo:
+	git add <files>
+	git commit -m "<commit message>"
+	git fetch
+	git pull
+	<manual merge if necessary>
+		if merge, then re do add and commit
+	git push
+
 **** PROJECT OUTLINE ****
 main.cpp = basic functions for writing a standard midi file
     including: wb, writeVLQ, writeSMF, writeHeader, writeTrackLength, etc.
@@ -22,8 +37,3 @@ trackChords.cpp = where a track is written. calls the individual functions to wr
 trackDrums.cpp = where a track is written. calls the individual functions to write the events for a track
 	calls functions from channelMessages.cpp and metaEvents.cpp to write individual events
 
-**** Current Status ****
-- need to read an array of bytes from the file
-- in melody, output the bytes as eighth notes with one eighth note rest at the end
-- in chords, output them as whole notes
-- make a sick drum line irrelevant to the input file
