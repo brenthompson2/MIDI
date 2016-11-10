@@ -6,23 +6,7 @@
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 //
 
-//		**** PROJECT OUTLINE ****
-//  main.cpp = basic functions for writing a standard midi file
-    //  including: wb, writeVLQ, writeSMF, writeHeader, writeTrackLength, etc.
-    //	calls writeTrackEvent from trackEvents.cpp to write individual tracks
-    //  will contain algorithms for making chords, arpeggios, scales, etc.
-//
-//	trackEvents.cpp = where a track is written. calls the individual functions to write the events for a track
-    //	calls functions from channelMessages.cpp and metaEvents.cpp to write individual events
-//
-// 	channelMessages.cpp = where channel messages are written
-//
-//	metaEvents.cpp = where metaEvents are written
-//
-//	MIDIconst.h = creates a bunch of constants that make the code easier for the human to read and write
 
-//**** Current Status ****
-//	
 
 #ifndef    main_H
 #define    main_H
@@ -60,18 +44,22 @@ unsigned int numTracks;
 	// writeTrackChunk = calls the functions to write an entire track chunk to a file
 	void writeTrackChunk ();
 
-// *** Track Events ***
 	// writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
 	void writeEventDeltaTime (unsigned int numTicks);
+
+// *** Track Events ***
 	
-	// writeTrackOne = writes track events to the file
-	void writeTrackOne ();
-
-	void makeMajorChord (unsigned char channel, unsigned char root, unsigned int volume);
-
+	// writeTrackMelody = writes track events for the melody to the file
+	void writeTrackMelody ();
 	void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volume);
 
-	void musicThing (unsigned char channel, unsigned char root, unsigned int volume);
+	void writeTrackChords ();
+	void makeMajorChord (unsigned char channel, unsigned char root, unsigned int volume);
+
+	void writeTrackDrums ();
+
+
+	//writeTrackDrums = write track events for the drums to the file
 
 // *** Meta Events ***
 	// metaEndOfTrack = FF 2f 00 = writes end of track to the file

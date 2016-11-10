@@ -12,22 +12,14 @@
 
 #include "main.h"
 
-// writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
-void writeEventDeltaTime (unsigned int numTicks) {
-	#ifdef DEBUG
-	cout<<"\t\t\tWriting Delta Time = "<<numTicks<<endl;
-	#endif
-	
-	writeVLQ (numTicks);
-}
 
 // writeTrackOne = writes a track event to the file
-void writeTrackOne () {
+void writeTrackDrums () {
 	#ifdef DEBUG
 	cout<<"\t\tWriting Track Events "<<endl;
 	#endif
 	
-	int counter = 1;
+	int counter = 1, i;
 	char noteInput;
 	
 	//event 1: 	00 ff 51 03 0f 42 40 == at delta 0 - set tempo - to hex 0f4240
@@ -37,66 +29,13 @@ void writeTrackOne () {
 	//event 2: 00 c0 0b = at delta 0 - set program of channel 1 - to program decimal 1, the Basic Piano
 		writeEventDeltaTime (0x00); // time = 0
 		programChange (0x01, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
-		
-	//read in indicator bit and call the appropriate function
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//Pattern 1: for the first 50 bytes, output them sequentially as quarter notes
-		noteInput = rb ();
-		while ((counter <= 10) && (noteInput != '&')){
-			//input note
-			
-			//turn note on
-			writeEventDeltaTime (0x00); // time = 0
-			noteOn (CHANNEL_1, noteInput, 0x60);
-				
-			//turn note off	
-			writeEventDeltaTime (0x20); // time = 32
-			noteOff (CHANNEL_1, noteInput, 0x60); 
-				
-			noteInput = rb ();
-			counter++;
-		}
-
-	// Pattern 2: for the next 50 bytes, output major chords based off root note
+	// Pattern 1: for the next 50 bytes, output major scales based off of the root note
 		counter = 0;
-		while ((counter <= 10) && (noteInput != '&')){
-			makeMajorChord(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
-
-		}
-		
-	// Pattern 3: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 20) && (noteInput != '&')){
+		for (int i = 0; i < numBits; i++) {
 			makeMajorScale(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
+			noteInput = notesFromFile[i];
 			counter++;
-
-		}
-
-	// Pattern 4: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 20) && (noteInput != '&')){
-			musicThing(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
-
 		}
 
 	//event8: 81 50 b0 7b 00 = at delta decimal 208 - control change - all notes off 
@@ -109,40 +48,6 @@ void writeTrackOne () {
 		metaEndOfTrack ();
 }
 
-void makeMajorChord (unsigned char channel, unsigned char root, unsigned int volume){
-	int i;
-	unsigned char third, fifth;
-
-	third = root + 4;
-	fifth = root + 7;
-
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, root, volume);
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, third, volume);
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, fifth, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, root, volume); 
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, third, volume); 
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, fifth, volume); 
-
-
-}
 
 void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volume){
 	int i;

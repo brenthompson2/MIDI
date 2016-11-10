@@ -149,26 +149,22 @@ void writeHeadChunk () {
 		#endif	
 		wb (0x00); wb (0x00); wb (0x00); wb (0x06);
 	
-		
-		unsigned int  format;
-		format = rb ();
+		format = 1;
 		#ifdef DEBUG
 		cout<<"\t\tWriting Head Format: "<< format <<endl;
 		#endif
 		wb (format);
 		
-		numTracks = rb();
+		numTracks = 2;
 		#ifdef DEBUG
 		cout<<"\t\tWriting NTracks = "<<hex<<numTracks<<endl;
 		#endif
 		wb (0x00); wb (numTracks);
 		
-		string timeSignature;
-		// read in time signature and convert it to division
 		#ifdef DEBUG
 		cout<<"\t\tWriting Division "<<endl;
 		#endif		
-		wb (0x00); wb (division); 
+		wb (0x00); wb (0x60); 
 }
 
 // writeTrackChunk = calls the functions to write an entire track chunk to a file (pg 5)
@@ -193,4 +189,11 @@ void writeTrackChunk () {
 		writeTrackOne ();
 }
 
-// writeTrackLength = writes the number of bytes in the track to the file [4 Bytes] (pg 5)
+// writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
+void writeEventDeltaTime (unsigned int numTicks) {
+	#ifdef DEBUG
+	cout<<"\t\t\tWriting Delta Time = "<<numTicks<<endl;
+	#endif
+	
+	writeVLQ (numTicks);
+}
