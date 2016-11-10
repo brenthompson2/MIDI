@@ -4,6 +4,8 @@
 
 # -Wall = extra warning messages
 
+default: main
+
 main: main.cpp trackEvents.cpp metaEvents.cpp channelMessages.cpp main.h MIDIconst.h
 	g++ main.cpp trackEvents.cpp metaEvents.cpp channelMessages.cpp -o main
 
