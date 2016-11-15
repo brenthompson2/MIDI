@@ -53,8 +53,6 @@ int main() {
 	
 	globalInputFile.close();
 	globalOutputFile.close();
-	
-	cout<<hex<<GCOUNT;
 
 	#ifdef DEBUG
 	cout<< "Done with prog7.mid" <<endl;
@@ -197,9 +195,12 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x0b); wb (0x59);
+		wb (0x00); wb (0x00); wb (0x1a); wb (0x6b);
 
 		writeTrackChords(noteArray, lengthArray);
+
+		cout<<"CHORDS LENGTH: "<<hex<<GCOUNT<<endl;
+		GCOUNT = 0;
 
 	//TRACK 2
 		// MTrk [4 Bytes] (pg 5)
@@ -211,9 +212,12 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x0b); wb (0x59);
+		wb (0x00); wb (0x00); wb (0x17); wb (0x5f);
 
 		writeTrackMelody(noteArray, lengthArray);
+
+		cout<<"MELODY LENGTH: "<<hex<<GCOUNT<<endl;
+		GCOUNT = 0;
 
 	//TRACK 3
 		// MTrk [4 Bytes] (pg 5)
@@ -225,9 +229,12 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x0b); wb (0x59);
+		wb (0x00); wb (0x00); wb (0x22); wb (0xc0);
 		
 		writeTrackDrums(lengthArray);
+
+		cout<<"DRUMS LENGTH: "<<hex<<GCOUNT<<endl;
+		GCOUNT = 0;
 }
 
 // writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file

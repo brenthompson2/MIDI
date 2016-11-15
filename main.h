@@ -8,7 +8,7 @@
 #ifndef    MAIN_H
 #define    MAIN_H
 
-#define DEBUG
+// #define DEBUG
 
 #define MAXARRAYSIZE 250
 

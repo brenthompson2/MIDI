@@ -23,7 +23,7 @@ void writeTrackDrums (int lengthArray) {
 	i = 0;
 	// Pattern 1: Intro. Bass on 2 4
 		for (i; i < 4; i++) {
-			cout<<"Pattern 1\n";
+			// cout<<"Pattern 1\n";
 
 			writeEventDeltaTime (0x60);
 			noteOn(CHANNEL_10, B1, 0x60);

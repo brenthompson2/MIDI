@@ -31,7 +31,7 @@ void writeTrackChords (unsigned char noteArray[], int lengthArray) {
 			#ifdef DEBUG
 				cout<<"\t\t\tChord Pattern1: note: "<< noteInput <<"count: "<< i <<endl;
 			#endif
-			makeMajorChord(CHANNEL_2, noteInput, 0x60);
+			makeMajorChord(CHANNEL_2, noteInput, 0x60, 0xc0);
 		}
 
 	//Pattern 2: for the next 50 bytes, output major chords based off root note
