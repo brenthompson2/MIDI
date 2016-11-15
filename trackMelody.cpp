@@ -32,28 +32,33 @@ void writeTrackMelody () {
 	//Pattern 1: for the first 4 measures, output them sequentially as Half notes
 		i = 0; 
 		for (i; i < 4; i++){
+			noteInput = noteArray[i]
 			//turn note on
 			writeEventDeltaTime (0x00); // time = 0
-			noteOn (CHANNEL_1, noteArray[i], 0x60);
+			noteOn (CHANNEL_1, noteInput, 0x60);
 				
 			//turn note off	
 			writeEventDeltaTime (0xc0);
 			noteOff (CHANNEL_1, noteInput, 0x60); 
-
-			//turn note on
-			writeEventDeltaTime (0x00); // time = 0
-			noteOn (CHANNEL_1, noteArray[i], 0x60);
-				
-			//turn note off	
-			writeEventDeltaTime (0xc0);
-			noteOff (CHANNEL_1, noteInput, 0x60); 
-			counter++;
 		}
 
-	// Pattern 2: for the next 50 bytes, output major chords based off root note
-
+	// Pattern 2: for first half of the array, output them as eighth notes
+			// beat = root, AND = 3rd
 		for (i; i < (lengthArray/2); i++){{
-			makeMajorChord(CHANNEL_1, noteInput, 0x60);
+			noteInput = noteArray[i]
+			//turn note on
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn (CHANNEL_1, noteInput, 0x60);
+			//turn note off	
+			writeEventDeltaTime (0x30);
+			noteOff (CHANNEL_1, noteInput, 0x60); 
+
+			//turn note on
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn (CHANNEL_1, (noteInput + 4), 0x60);
+			//turn note off	
+			writeEventDeltaTime (0x30);
+			noteOff (CHANNEL_1, (noteInput + 4), 0x60); 
 
 		}
 		

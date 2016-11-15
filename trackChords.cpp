@@ -18,7 +18,7 @@ void writeTrackChords () {
 	cout<<"\t\tWriting Track Events "<<endl;
 	#endif
 	
-	int counter = 1;
+	int i;
 	char noteInput;
 	
 	//event 1: 	00 ff 51 03 0f 42 40 == at delta 0 - set tempo - to hex 0f4240
@@ -29,48 +29,19 @@ void writeTrackChords () {
 		writeEventDeltaTime (0x00); // time = 0
 		programChange (0x01, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
 	
-	//Pattern 1: for the first 50 bytes, output them sequentially as quarter notes
-		noteInput = rb ();
-		while ((counter <= 10) && (noteInput != '&')){
-			//input note
-			
-			//turn note on
-			writeEventDeltaTime (0x00); // time = 0
-			noteOn (CHANNEL_1, noteInput, 0x60);
-				
-			//turn note off	
-			writeEventDeltaTime (0x60); // time = 32
-			noteOff (CHANNEL_1, noteInput, 0x60); 
-				
-			noteInput = rb ();
-			counter++;
-		}
-
-	// Pattern 2: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 10) && (noteInput != '&')){
+	//Pattern 1: for first half of the array, output chords sequentially as Half notes
+		i = 0; 
+		for (i; i < (lengthArray/2); i++){
+			noteInput = noteArray[i];
 			makeMajorChord(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
-
-		}
-		
-	// Pattern 3: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 20) && (noteInput != '&')){
-			makeMajorScale(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
-
 		}
 
-	// Pattern 4: for the next 50 bytes, output major chords based off root note
-		// counter = 0;
-		// while ((counter <= 20) && (noteInput != '&')){
-		// 	musicThing(CHANNEL_1, noteInput, 0x60);
-		// 	noteInput = rb ();
-		// 	counter++;
-		// }
+	//Pattern 2: for the next 50 bytes, output major chords based off root note
+		for (i; i < lengthArray; i++){
+			noteInput = noteArray[i];
+			makeMajorChord(CHANNEL_1, noteInput, 0x60);
+
+		}
 
 	//event8: 81 50 b0 7b 00 = at delta decimal 208 - control change - all notes off 
 		writeEventDeltaTime (0xd0); //time = VLQ 81 50 = 0xd0 = decimal 208 
@@ -102,14 +73,14 @@ void makeMajorChord (unsigned char channel, unsigned char root, unsigned int vol
 	noteOn (CHANNEL_1, fifth, volume);
 
 	//turn note off	
-	writeEventDeltaTime (0x60); // time = 32
+	writeEventDeltaTime (0xc0); // time = 32
 	noteOff (CHANNEL_1, root, volume); 
 
 	//turn note off	
-	writeEventDeltaTime (0x60); // time = 32
+	writeEventDeltaTime (0xc0); // time = 32
 	noteOff (CHANNEL_1, third, volume); 
 
 	//turn note off	
-	writeEventDeltaTime (0x60); // time = 32
+	writeEventDeltaTime (0xc0); // time = 32
 	noteOff (CHANNEL_1, fifth, volume); 
 }
