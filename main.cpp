@@ -93,6 +93,15 @@ void rb (){
 	}
 }
 
+// writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
+void writeEventDeltaTime (unsigned int numTicks) {
+	#ifdef DEBUG
+	cout<<"\t\t\tWriting Delta Time = "<<numTicks<<endl;
+	#endif
+	
+	writeVLQ (numTicks);
+}
+
 // writeVLQ = takes in a hex value and writes the converted array of VLQ Bytes to the file
 void writeVLQ (unsigned int hexNum)
 {
@@ -166,7 +175,7 @@ void writeHeadChunk () {
 		#endif
 		wb (format);
 		
-		numTracks = 2;
+		numTracks = 3;
 		#ifdef DEBUG
 		cout<<"\t\tWriting NTracks = "<<hex<<numTracks<<endl;
 		#endif
@@ -235,13 +244,4 @@ void writeTrackChunk () {
 
 		cout<<"DRUMS LENGTH: "<<hex<<GCOUNT<<endl;
 		GCOUNT = 0;
-}
-
-// writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
-void writeEventDeltaTime (unsigned int numTicks) {
-	#ifdef DEBUG
-	cout<<"\t\t\tWriting Delta Time = "<<numTicks<<endl;
-	#endif
-	
-	writeVLQ (numTicks);
 }
