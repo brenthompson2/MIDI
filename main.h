@@ -8,8 +8,8 @@
 
 
 
-#ifndef    main_H
-#define    main_H
+#ifndef    MAIN_H
+#define    MAIN_H
 
 #define DEBUG
 
