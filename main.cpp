@@ -78,6 +78,9 @@ unsigned char rb (){
 	{
 		return '&';
 	}
+
+	value = (int(value) % 35) + 48;
+
 	return value;
 }
 
@@ -136,6 +139,8 @@ void writeHeadChunk () {
 	#ifdef DEBUG
 	cout<<"\tWriting Head Chunk "<<endl;
 	#endif
+
+		unsigned int format;
 	
 		//MThd [4 bytes] (pg 3)
 		#ifdef DEBUG
@@ -186,7 +191,9 @@ void writeTrackChunk () {
 		#endif
 		wb (0x00); wb (0x00); wb (0x0b); wb (0x59);
 
-		writeTrackOne ();
+		writeTrackChords();
+		writeTrackMelody();
+		writeTrackDrums();
 }
 
 // writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
