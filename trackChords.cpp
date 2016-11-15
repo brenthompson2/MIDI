@@ -13,7 +13,7 @@
 #include "main.h"
 
 // writeTrackOne = writes a track event to the file
-void writeTrackMelody () {
+void writeTrackChords () {
 	#ifdef DEBUG
 	cout<<"\t\tWriting Track Events "<<endl;
 	#endif

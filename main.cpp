@@ -42,6 +42,8 @@ int main() {
         return 0;
     }
 
+    rb();
+
 	writeSMF ();	
 	
 	globalInputFile.close();
@@ -67,21 +69,24 @@ void wb (unsigned value) {
 
 }
 
-unsigned char rb (){
+void rb (){
 	unsigned char value;
-	globalInputFile>> hex>> value;
-	cout<<"\t\tRB = "<< char(value)<<endl;
-	if(value == '&'){
-		value ='M';
-	}
-	if (globalInputFile.eof())
-	{
-		return '&';
+
+	lengthArray = 0;
+
+	for(int i = 0; i < MAXARRAYSIZE; i++){
+		globalInputFile>> hex>> value;
+		cout<<"\t\tRB = "<< char(value)<<endl;
+
+		if (globalInputFile.eof()){ break;}
+
+		value = (int(value) % 35) + 48;
+
+		noteArray[i] = value;
+
+		lengthArray = i;
 	}
 
-	value = (int(value) % 35) + 48;
-
-	return value;
 }
 
 // writeVLQ = takes in a hex value and writes the converted array of VLQ Bytes to the file

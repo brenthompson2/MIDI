@@ -13,6 +13,8 @@
 
 #define DEBUG
 
+#define MAXARRAYSIZE 250
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -20,8 +22,10 @@
 using namespace std;
 
 // GLOBAL VARIABLES!!!!
-unsigned int division;
-unsigned int numTracks;
+unsigned char division;
+unsigned char numTracks;
+unsigned char noteArray[MAXARRAYSIZE];
+unsigned int lengthArray;
 
 
 // *** Main Function Declarations ****
@@ -30,7 +34,7 @@ unsigned int numTracks;
 	void wb (unsigned value);
 		
 	// read byte = read one byte from the global input file
-	unsigned char rb (void);
+	void rb (void);
 	
 	// writeVLQ = takes in a hex value and writes the converted array of VLQ Bytes to the file
 	void writeVLQ (unsigned int hexNum);

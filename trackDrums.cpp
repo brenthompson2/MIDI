@@ -31,7 +31,7 @@ void writeTrackDrums () {
 		programChange (0x01, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
 
 	// Pattern 1: Bass on the beat, snare on the AND
-		for (i; i < (.5 x lengthArray)); i++) {
+		for (i; i < (lengthArray/2); i++) {
 			writeEventDeltaTime (0x00); // time = 0
 			noteOn(CHANNEL_10, B1, 0x60);
 			writeEventDeltaTime (0x30); // time = 0
