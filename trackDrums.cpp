@@ -14,7 +14,7 @@
 
 
 // writeTrackOne = writes a track event to the file
-void writeTrackDrums () {
+void writeTrackDrums (int lengthArray) {
 	#ifdef DEBUG
 	cout<<"\t\tWriting Track Events "<<endl;
 	#endif

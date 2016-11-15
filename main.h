@@ -18,11 +18,6 @@
 #include "MIDIconst.h"
 using namespace std;
 
-// GLOBAL VARIABLES!!!!
-unsigned char division;
-unsigned char numTracks;
-unsigned char noteArray[MAXARRAYSIZE];
-unsigned int lengthArray;
 
 // *** Main Function Declarations ****
 
@@ -50,13 +45,13 @@ unsigned int lengthArray;
 // *** Track Events ***
 	
 	// writeTrackMelody = writes track events for the melody to the file
-	void writeTrackMelody ();
+	void writeTrackMelody (unsigned char noteArray[], int lengthArray);
 	void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volume);
 
-	void writeTrackChords ();
+	void writeTrackChords (unsigned char noteArray[], int lengthArray);
 	void makeMajorChord (unsigned char channel, unsigned char root, unsigned int volume);
 
-	void writeTrackDrums ();
+	void writeTrackDrums (int lengthArray);
 
 
 	//writeTrackDrums = write track events for the drums to the file

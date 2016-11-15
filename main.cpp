@@ -14,6 +14,11 @@
 	unsigned long int GCOUNT = 0;
 	ofstream globalOutputFile;
 	ifstream globalInputFile;
+	// GLOBAL VARIABLES!!!!
+	unsigned char noteArray[MAXARRAYSIZE];
+	unsigned int lengthArray;
+	unsigned char division;
+	unsigned char numTracks;
 #endif
 
 int main() {
@@ -196,9 +201,35 @@ void writeTrackChunk () {
 		#endif
 		wb (0x00); wb (0x00); wb (0x0b); wb (0x59);
 
-		writeTrackChords();
-		writeTrackMelody();
-		writeTrackDrums();
+		writeTrackChords(noteArray, lengthArray);
+
+	//TRACK 2
+		// MTrk [4 Bytes] (pg 5)
+		#ifdef DEBUG
+		cout<<"\t\tWriting MTrk "<<endl;
+		#endif
+		wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
+	
+		#ifdef DEBUG
+		cout<<"\t\tWriting Track Length "<<endl;
+		#endif
+		wb (0x00); wb (0x00); wb (0x0b); wb (0x59);
+
+		writeTrackMelody(noteArray, lengthArray);
+
+	//TRACK 3
+		// MTrk [4 Bytes] (pg 5)
+		#ifdef DEBUG
+		cout<<"\t\tWriting MTrk "<<endl;
+		#endif
+		wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
+	
+		#ifdef DEBUG
+		cout<<"\t\tWriting Track Length "<<endl;
+		#endif
+		wb (0x00); wb (0x00); wb (0x0b); wb (0x59);
+		
+		writeTrackDrums(lengthArray);
 }
 
 // writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
