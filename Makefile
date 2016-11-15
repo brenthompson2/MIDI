@@ -6,7 +6,7 @@
 
 default: main
 
-main: main.cpp main.h MIDIconst.h
+main: main.cpp trackChords.cpp trackMelody.cpp trackDrums.cpp metaEvents.cpp channelMessages.cpp main.h MIDIconst.h
 	g++ main.cpp trackChords.cpp trackMelody.cpp trackDrums.cpp metaEvents.cpp channelMessages.cpp -o main
 
 #new: main.o trackDrums.o trackMelody.o trackChords.o metaEvents.o channelMessages.o
@@ -31,8 +31,8 @@ main: main.cpp main.h MIDIconst.h
 #	g++ -Wall -c metaEvents.cpp
 
 #removes exe and object files
-#clean:
-#	rm sort *.o *~
+clean:
+	rm main
 	
 # g++ main.cpp trackEvents.cpp metaEvents.cpp channelMessages.cpp -o main
 # ./main

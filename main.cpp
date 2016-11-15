@@ -81,8 +81,9 @@ void rb (){
 
 	for(int i = 0; i < MAXARRAYSIZE; i++){
 		globalInputFile>> hex>> value;
+		#ifdef DEBUG
 		cout<<"\t\tRB = "<< char(value)<<endl;
-
+		#endif
 		if (globalInputFile.eof()){ break;}
 
 		value = (int(value) % 35) + 48;

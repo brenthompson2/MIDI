@@ -16,7 +16,7 @@
 // writeTrackOne = writes a track event to the file
 void writeTrackDrums (int lengthArray) {
 	#ifdef DEBUG
-	cout<<"\t\tWriting Track Events "<<endl;
+	cout<<"\t\tWriting DRUM Track Events "<<endl;
 	#endif
 	
 	int counter = 1, i;
@@ -32,6 +32,8 @@ void writeTrackDrums (int lengthArray) {
 
 	// Pattern 1: Intro. Bass on 2 4
 		for (i; i < 4; i++) {
+			cout<<"Pattern 1\n";
+
 			writeEventDeltaTime (0x60); // time = 0
 			noteOn(CHANNEL_10, B1, 0x60);
 
