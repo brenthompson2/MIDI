@@ -4,10 +4,9 @@
 //
 //  Basic Header for writing a midi file. 
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
-//
 
-#ifndef    main_H
-#define    main_H
+#ifndef    MAIN_H
+#define    MAIN_H
 
 #define DEBUG
 

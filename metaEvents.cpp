@@ -31,12 +31,3 @@ void metaSetTempo (unsigned int a, unsigned int b, unsigned int c)
 	//write the new tempo to the file
 	wb (a); wb (b); wb (c);
 }
-
-
-
-
-
-
-
-
-
