@@ -65,12 +65,12 @@ void writeTrackMelody () {
 		}
 
 	// Pattern 4: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 20) && (noteInput != '&')){
-			musicThing(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
-		}
+		// counter = 0;
+		// while ((counter <= 20) && (noteInput != '&')){
+		// 	musicThing(CHANNEL_1, noteInput, 0x60);
+		// 	noteInput = rb ();
+		// 	counter++;
+		// }
 
 	//event8: 81 50 b0 7b 00 = at delta decimal 208 - control change - all notes off 
 		writeEventDeltaTime (0xd0); //time = VLQ 81 50 = 0xd0 = decimal 208 

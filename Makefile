@@ -7,7 +7,7 @@
 default: main
 
 main: main.cpp main.h MIDIconst.h
-	g++ main.cpp trackOne.cpp metaEvents.cpp channelMessages.cpp -o main
+	g++ main.cpp trackChords.cpp trackMelody.cpp trackDrums.cpp metaEvents.cpp channelMessages.cpp -o main
 
 # main.o: main.cpp main.h MIDIconst.h
 # 	g++ -Wall -o main.o main.cpp

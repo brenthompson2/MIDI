@@ -17,15 +17,15 @@ void noteOn (unsigned char channel, unsigned char note, unsigned int volume)
 {
 	
 	//convert to the channel and append with prefix 9
-	unsigned int newByte, midNote;
-	unsigned char finalNote;
+	unsigned int newByte;
+
 	newByte = channel | 0x90;
 
-	midNote = (int(note) % 35) + 48;
-	cout<<dec<<midNote<<endl;
+	// midNote = (int(note) % 35) + 48;
+	// cout<<dec<<midNote<<endl;
 
-	finalNote = char(midNote);
-	cout<<dec<<int(finalNote)<<endl;
+	// finalNote = char(midNote);
+	// cout<<dec<<int(finalNote)<<endl;
 	
 	#ifdef DEBUG
 	cout << "\t\t\t\tWriting Event Note On on channel: " << hex << channel << " note: " << note << " volume: " << volume << endl;
@@ -34,7 +34,7 @@ void noteOn (unsigned char channel, unsigned char note, unsigned int volume)
 	// write Event Note On on channel
 	wb (newByte);
 	//write the note to the file
-	wb (finalNote);
+	wb (note);
 	//write the volume to the file
 	wb (volume);
 };
@@ -44,13 +44,13 @@ void noteOff (unsigned char channel, unsigned char note, unsigned int volume)
 {
 	
 	//convert to the channel and append with prefix 9
-	unsigned int newByte, midNote;
-	unsigned char finalNote;
+	unsigned int newByte;
+
 	newByte = channel | 0x80;
 
-	midNote = (int(note) % 35) + 48;
+	// midNote = (int(note) % 35) + 48;
 
-	finalNote = char(midNote);
+	// finalNote = char(midNote);
 	
 	#ifdef DEBUG
 	cout << "\t\t\t\tWriting Event Note Off on channel: " << hex << newByte << " note: " << note << " volume: " << volume << endl;
@@ -59,7 +59,7 @@ void noteOff (unsigned char channel, unsigned char note, unsigned int volume)
 	// write Event Note Off on channel
 	wb (newByte);
 	//write the note to the file
-	wb (finalNote);
+	wb (note);
 	//write the volume to the file
 	wb (volume);
 }
