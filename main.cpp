@@ -132,7 +132,7 @@ void writeSMF () {
 	cout<<"Writing Standard MIDI File "<<endl;
 	#endif
 	
-	writeHeadChunk (); // format = 0x00, numTracks = 0x01, division = 0x60 = 90
+	writeHeadChunk ();
 
 	for (unsigned int currentTrack = 0; currentTrack < numTracks; currentTrack++){
 		writeTrackChunk ();

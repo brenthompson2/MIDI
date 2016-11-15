@@ -9,21 +9,30 @@ default: main
 main: main.cpp main.h MIDIconst.h
 	g++ main.cpp trackChords.cpp trackMelody.cpp trackDrums.cpp metaEvents.cpp channelMessages.cpp -o main
 
-# main.o: main.cpp main.h MIDIconst.h
-# 	g++ -Wall -o main.o main.cpp
+#new: main.o trackDrums.o trackMelody.o trackChords.o metaEvents.o channelMessages.o
+#	g++ -o new main.o trackDrums.o trackMelody.o trackChords.o channelMessages.o metaEvents.o 
 
-# trackEvents.o: trackEvents.cpp main.h MIDIconst.h
-# 	g++ -Wall -o trackEvents.o trackEvents.cpp
-	
-# channelMessages.o: channelMessages.cpp main.h MIDIconst.h
-# 	g++ -Wall -o channelMessages.o channelMessages.cpp
-	
-# metaEvents.o: metaEvents.cpp main.h MIDIconst.h
-# 	g++ -Wall -o metaEvents.o metaEvents.cpp
+#main.o: main.cpp main.h MIDIconst.h
+# 	g++ -Wall -c main.cpp
 
-#removes exe, object, and backup files
-# clean:
-# 	rm sort *.o *~
+#trackDrums.o: trackDrums.cpp main.h MIDIconst.h
+#	g++ -Wall -c trackDrums.cpp
+
+#trackMelody.o: trackMelody.cpp main.h MIDIconst.h
+#	g++ -Wall -c trackMelody.cpp
+	
+#trackChords.o: trackChords.cpp main.h MIDIconst.h
+#	g++ -Wall -c trackChords.cpp
+
+#channelMessages.o: channelMessages.cpp main.h MIDIconst.h
+#	g++ -Wall -c channelMessages.cpp
+	
+#metaEvents.o: metaEvents.cpp main.h MIDIconst.h
+#	g++ -Wall -c metaEvents.cpp
+
+#removes exe and object files
+#clean:
+#	rm sort *.o *~
 	
 # g++ main.cpp trackEvents.cpp metaEvents.cpp channelMessages.cpp -o main
 # ./main

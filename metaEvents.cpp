@@ -5,9 +5,6 @@
 //  Functions that write meta events
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 
-#ifndef    metaEvents_H
-#define    metaEvents_H
-
 #include "main.h"
 
 // **** META EVENT DEFINITIONS ****
@@ -34,10 +31,6 @@ void metaSetTempo (unsigned int a, unsigned int b, unsigned int c)
 	//write the new tempo to the file
 	wb (a); wb (b); wb (c);
 }
-
-
-#endif
-
 
 
 

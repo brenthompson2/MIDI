@@ -6,13 +6,10 @@
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 //
 
-
-
 #ifndef    main_H
 #define    main_H
 
 #define DEBUG
-
 
 #define MAXARRAYSIZE 250
 
@@ -27,7 +24,6 @@ unsigned char division;
 unsigned char numTracks;
 unsigned char noteArray[MAXARRAYSIZE];
 unsigned int lengthArray;
-
 
 // *** Main Function Declarations ****
 
