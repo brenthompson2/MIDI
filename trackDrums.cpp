@@ -30,167 +30,62 @@ void writeTrackDrums () {
 		writeEventDeltaTime (0x00); // time = 0
 		programChange (0x01, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
 
-	// Pattern 1: for the next 50 bytes, output major scales based off of the root note
-		counter = 0;
-		for (int i = 0; i < numBits; i++) {
-			makeMajorScale(CHANNEL_1, noteInput, 0x60);
-			noteInput = notesFromFile[i];
-			counter++;
+	// Pattern 1: Bass on the beat, snare on the AND
+		for (i; i < (.5 x lengthArray)); i++) {
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn(CHANNEL_10, B1, 0x60);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
+
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn(CHANNEL_10, B1, 0x30);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
+
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn(CHANNEL_10, B1, 0x30);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
+
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn(CHANNEL_10, B1, 0x30);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
+		}
+
+	// Pattern 2: Bass on the beat, snare on the AND, clap on 2 4
+		for (i; i < lengthArray; i++) {
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn(CHANNEL_10, B1, 0x60);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
+
+			writeEventDeltaTime (0x30); // time = 0
+			noteOn(CHANNEL_10, B1, 0x60);
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn(CHANNEL_10, Ds2, 0x60);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
+
+			writeEventDeltaTime (0x30); // time = 0
+			noteOn(CHANNEL_10, B1, 0x60);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
+
+			writeEventDeltaTime (0x30); // time = 0
+			noteOn(CHANNEL_10, B1, 0x60);
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn(CHANNEL_10, Ds2, 0x60);
+			writeEventDeltaTime (0x30); // time = 0
+			noteOne(CHANNEL_10, D2, 0x60);
 		}
 
 	//event8: 81 50 b0 7b 00 = at delta decimal 208 - control change - all notes off 
 		writeEventDeltaTime (0xd0); //time = VLQ 81 50 = 0xd0 = decimal 208 
-		controlChange (CHANNEL_1, 0x7b, 0x00);
-			// turn off all notes on channel 1 (pg 10, 15)
+		controlChange (CHANNEL_10, 0x7b, 0x00);
+			// turn off all notes on channel 10 (pg 10, 15)
 			
 	//event9: 00 ff 2f 00 = end of track
 		writeEventDeltaTime (0x00); // time = 0
 		metaEndOfTrack ();
-}
-
-
-void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volume){
-	int i;
-	unsigned char second, third, fourth, fifth, sixth;
-
-	second = root + 2;
-	third = root + 4;
-	fourth = root +5;
-	fifth = root + 7;
-	sixth = root + 9;
-
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, root, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, root, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, second, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, second, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, third, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, third, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, fourth, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, fourth, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, fifth, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, fifth, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, sixth, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, sixth, volume); 
-}
-
-void musicThing (unsigned char channel, unsigned char root, unsigned int volume){
-	int i;
-	unsigned char second, third, fourth, fifth, sixth;
-
-	second = root + 2;
-	third = root + 4;
-	fourth = root +5;
-	fifth = root + 7;
-	sixth = root + 9;
-
-	//chord on
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, root, volume);
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, third, volume);
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, fifth, volume);
-
-	//scale
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, root, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, root, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, second, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, second, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, third, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, third, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, fourth, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, fourth, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, fifth, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, fifth, volume); 
-
-	//turn note on
-	writeEventDeltaTime (0x00); // time = 0
-	noteOn (CHANNEL_1, sixth, volume);
-
-	//turn note off	
-	writeEventDeltaTime (0x20); // time = 32
-	noteOff (CHANNEL_1, sixth, volume); 
-
-	//chord off
-	//turn note off	
-	writeEventDeltaTime (0x00); // time = 32
-	noteOff (CHANNEL_1, root, volume); 
-
-	//turn note off	
-	writeEventDeltaTime (0x00); // time = 32
-	noteOff (CHANNEL_1, third, volume); 
-
-	//turn note off	
-	writeEventDeltaTime (0x00); // time = 32
-	noteOff (CHANNEL_1, fifth, volume); 
 }
