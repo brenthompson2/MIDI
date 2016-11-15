@@ -30,8 +30,17 @@ void writeTrackDrums () {
 		writeEventDeltaTime (0x00); // time = 0
 		programChange (0x01, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
 
-	// Pattern 1: Bass on the beat, snare on the AND
-		for (i; i < (.5 x lengthArray)); i++) {
+	// Pattern 1: Intro. Bass on 2 4
+		for (i; i < 4); i++) {
+			writeEventDeltaTime (0x60); // time = 0
+			noteOn(CHANNEL_10, B1, 0x60);
+
+			writeEventDeltaTime (0x60); // time = 0
+			noteOn(CHANNEL_10, B1, 0x60);
+		}
+
+	// Pattern 2: Bass on the beat, snare on the AND
+		for (i; i < (lengthArray/2); i++) {
 			writeEventDeltaTime (0x00); // time = 0
 			noteOn(CHANNEL_10, B1, 0x60);
 			writeEventDeltaTime (0x30); // time = 0
@@ -53,7 +62,7 @@ void writeTrackDrums () {
 			noteOne(CHANNEL_10, D2, 0x60);
 		}
 
-	// Pattern 2: Bass on the beat, snare on the AND, clap on 2 4
+	// Pattern 3: Bass on the beat, snare on the AND, clap on 2 4
 		for (i; i < lengthArray; i++) {
 			writeEventDeltaTime (0x00); // time = 0
 			noteOn(CHANNEL_10, B1, 0x60);

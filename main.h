@@ -13,6 +13,8 @@
 
 #define DEBUG
 
+#define MAXARRAYSIZE 250;
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -20,8 +22,10 @@
 using namespace std;
 
 // GLOBAL VARIABLES!!!!
-unsigned int division;
-unsigned int numTracks;
+unsigned char division;
+unsigned char numTracks;
+unsigned char noteArray[MAXARRAYSIZE];
+unsigned int lengthArray;
 
 
 // *** Main Function Declarations ****

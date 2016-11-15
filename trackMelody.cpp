@@ -18,7 +18,7 @@ void writeTrackMelody () {
 	cout<<"\t\tWriting Track Events "<<endl;
 	#endif
 	
-	int counter = 1;
+	int i;
 	char noteInput;
 	
 	//event 1: 	00 ff 51 03 0f 42 40 == at delta 0 - set tempo - to hex 0f4240
@@ -29,47 +29,42 @@ void writeTrackMelody () {
 		writeEventDeltaTime (0x00); // time = 0
 		programChange (0x01, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
 	
-	//Pattern 1: for the first 50 bytes, output them sequentially as quarter notes
-		noteInput = rb ();
-		while ((counter <= 10) && (noteInput != '&')){
-			//input note
-			
+	//Pattern 1: for the first 4 measures, output them sequentially as Half notes
+		i = 0; 
+		for (i; i < 4; i++){
 			//turn note on
 			writeEventDeltaTime (0x00); // time = 0
-			noteOn (CHANNEL_1, noteInput, 0x60);
+			noteOn (CHANNEL_1, noteArray[i], 0x60);
 				
 			//turn note off	
-			writeEventDeltaTime (0x60); // time = 32
+			writeEventDeltaTime (0xc0);
 			noteOff (CHANNEL_1, noteInput, 0x60); 
+
+			//turn note on
+			writeEventDeltaTime (0x00); // time = 0
+			noteOn (CHANNEL_1, noteArray[i], 0x60);
 				
-			noteInput = rb ();
+			//turn note off	
+			writeEventDeltaTime (0xc0);
+			noteOff (CHANNEL_1, noteInput, 0x60); 
 			counter++;
 		}
 
 	// Pattern 2: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 10) && (noteInput != '&')){
+
+		for (i; i < (lengthArray/2); i++){{
 			makeMajorChord(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
 
 		}
 		
 	// Pattern 3: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 20) && (noteInput != '&')){
+		for (i; i < lengthArray; i++){
 			makeMajorScale(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
-
 		}
 
 	// Pattern 4: for the next 50 bytes, output major chords based off root note
-		counter = 0;
-		while ((counter <= 20) && (noteInput != '&')){
+		for (i; i < lengthArray; i++){
 			musicThing(CHANNEL_1, noteInput, 0x60);
-			noteInput = rb ();
-			counter++;
 		}
 
 	//event8: 81 50 b0 7b 00 = at delta decimal 208 - control change - all notes off 
