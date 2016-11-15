@@ -1,5 +1,3 @@
 **** Current Status ****
-- need to read an array of bytes from the file
-- in melody, output the bytes as eighth notes with one eighth note rest at the end
-- in chords, output them as whole notes
-- make a sick drum line irrelevant to the input file
+
+- write the lengths for each track

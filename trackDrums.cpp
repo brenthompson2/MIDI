@@ -1,17 +1,11 @@
 //	Brendan Thompson
 //  trackDrums.cpp
-//  11/10/16
+//  11/15/16
 //
-//  Calls the functions that write the events for a track
+//  Calls the functions that write the events for a drum track
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 
-//  This will contain algorithms for making chords, arpeggios, scales, etc.
-
-// To do:
-// 	- take in tempo from main and put it to event 1
-
 #include "main.h"
-
 
 // writeTrackOne = writes a track event to the file
 void writeTrackDrums (int lengthArray) {
@@ -19,75 +13,72 @@ void writeTrackDrums (int lengthArray) {
 	cout<<"\t\tWriting DRUM Track Events "<<endl;
 	#endif
 	
-	int counter = 1, i;
+	int i;
 	char noteInput;
 	
 	//event 1: 	00 ff 51 03 0f 42 40 == at delta 0 - set tempo - to hex 0f4240
 		writeEventDeltaTime (0x00); // time = 0
 		metaSetTempo (0x0f, 0x42, 0x40); // new tempo = decimal 1000000 microseconds per quarter note = 1 second per quarter note
-		
-	//event 2: 00 c0 0b = at delta 0 - set program of channel 1 - to program decimal 1, the Basic Piano
-		writeEventDeltaTime (0x00); // time = 0
-		programChange (0x01, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
 
+	i = 0;
 	// Pattern 1: Intro. Bass on 2 4
 		for (i; i < 4; i++) {
 			cout<<"Pattern 1\n";
 
-			writeEventDeltaTime (0x60); // time = 0
+			writeEventDeltaTime (0x60);
 			noteOn(CHANNEL_10, B1, 0x60);
 
-			writeEventDeltaTime (0x60); // time = 0
+			writeEventDeltaTime (0x60);
 			noteOn(CHANNEL_10, B1, 0x60);
 		}
 
 	// Pattern 2: Bass on the beat, snare on the AND
 		for (i; i < (lengthArray/2); i++) {
-			writeEventDeltaTime (0x00); // time = 0
+			writeEventDeltaTime (0x00);
 			noteOn(CHANNEL_10, B1, 0x60);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 
-			writeEventDeltaTime (0x00); // time = 0
+			writeEventDeltaTime (0x00);
 			noteOn(CHANNEL_10, B1, 0x30);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 
-			writeEventDeltaTime (0x00); // time = 0
+			writeEventDeltaTime (0x00);
 			noteOn(CHANNEL_10, B1, 0x30);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 
-			writeEventDeltaTime (0x00); // time = 0
+			writeEventDeltaTime (0x00);
 			noteOn(CHANNEL_10, B1, 0x30);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 		}
 
 	// Pattern 3: Bass on the beat, snare on the AND, clap on 2 4
 		for (i; i < lengthArray; i++) {
-			writeEventDeltaTime (0x00); // time = 0
+			writeEventDeltaTime (0x00);
 			noteOn(CHANNEL_10, B1, 0x60);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOn(CHANNEL_10, B1, 0x60);
-			writeEventDeltaTime (0x00); // time = 0
+			writeEventDeltaTime (0x00);
 			noteOn(CHANNEL_10, Ds2, 0x60);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOn(CHANNEL_10, B1, 0x60);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOn(CHANNEL_10, B1, 0x60);
-			writeEventDeltaTime (0x00); // time = 0
+			writeEventDeltaTime (0x00);
 			noteOn(CHANNEL_10, Ds2, 0x60);
-			writeEventDeltaTime (0x30); // time = 0
+			writeEventDeltaTime (0x30);
 			noteOff(CHANNEL_10, D2, 0x60);
 		}
 
@@ -97,6 +88,6 @@ void writeTrackDrums (int lengthArray) {
 			// turn off all notes on channel 10 (pg 10, 15)
 			
 	//event9: 00 ff 2f 00 = end of track
-		writeEventDeltaTime (0x00); // time = 0
+		writeEventDeltaTime (0x00);
 		metaEndOfTrack ();
 }

@@ -1,20 +1,19 @@
 //	Brendan Thompson
 //  main.cpp
 //  prog7
-//  11/10/16
+//  11/15/16
 //   
-//  Read in our Ellis-Thompson-Sheet-Music-File <ETSMF> and output it as MIDI 
+//  Read in a file and output it as MIDI song
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 
 #include "main.h"
 
-//Global IO Stream
+//Global Declarations
 #ifndef GLOBAL
 #define GLOBAL
 	unsigned long int GCOUNT = 0;
 	ofstream globalOutputFile;
 	ifstream globalInputFile;
-	// GLOBAL VARIABLES!!!!
 	unsigned char noteArray[MAXARRAYSIZE];
 	unsigned int lengthArray;
 	unsigned char division;
@@ -38,15 +37,16 @@ int main() {
 	}
 	
 	//attempt to open globalInputFile
-	cout<<"What Elis-Thompson-Sheet-Music-File <ETSMF> would you like to read in? ";
+	cout<<"What file would you like to read in? ";
 	cin>>fileName;	
-    cout << endl << "Attempting to read in ETSMF: " << fileName << " ..." << endl;
+    cout << endl << "Attempting to read in file: " << fileName << " ..." << endl;
     globalInputFile.open(fileName.c_str(), ios::binary);
     if (!globalInputFile) {
         cerr << "Can't open " << fileName << " for input; aborting." << endl;
         return 0;
     }
 
+    //populate the noteArray
     rb();
 
 	writeSMF ();	
@@ -71,9 +71,10 @@ int main() {
 void wb (unsigned value) {
 	globalOutputFile<< char(value);
 	GCOUNT++;
-
 }
 
+// rb = reads values from a file, converts them to notes between C3 and B5,
+	// and puts the notes into an array 
 void rb (){
 	unsigned char value;
 
@@ -92,7 +93,6 @@ void rb (){
 
 		lengthArray = i;
 	}
-
 }
 
 // writeVLQ = takes in a hex value and writes the converted array of VLQ Bytes to the file
@@ -139,10 +139,7 @@ void writeSMF () {
 	#endif
 	
 	writeHeadChunk ();
-
-	for (unsigned int currentTrack = 0; currentTrack < numTracks; currentTrack++){
-		writeTrackChunk ();
-	}
+	writeTrackChunk ();
 }
 
 // writeHeadChunk = calls the functions to write an entire header chunk to a file

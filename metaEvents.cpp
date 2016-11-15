@@ -1,6 +1,6 @@
 //	Brendan Thompson
 //  metaEvents.cpp
-//  11/10/16
+//  11/15/16
 //
 //  Functions that write meta events
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated

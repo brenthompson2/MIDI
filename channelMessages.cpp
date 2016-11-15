@@ -1,6 +1,6 @@
 //	Brendan Thompson
 //  channelMessages.cpp
-//  11/10/16
+//  11/15/16
 //
 //  Functions that write channel message events
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
@@ -18,14 +18,7 @@ void noteOn (unsigned char channel, unsigned char note, unsigned int volume)
 	
 	//convert to the channel and append with prefix 9
 	unsigned int newByte;
-
 	newByte = channel | 0x90;
-
-	// midNote = (int(note) % 35) + 48;
-	// cout<<dec<<midNote<<endl;
-
-	// finalNote = char(midNote);
-	// cout<<dec<<int(finalNote)<<endl;
 	
 	#ifdef DEBUG
 	cout << "\t\t\t\tWriting Event Note On on channel: " << hex << channel << " note: " << note << " volume: " << volume << endl;
@@ -45,12 +38,7 @@ void noteOff (unsigned char channel, unsigned char note, unsigned int volume)
 	
 	//convert to the channel and append with prefix 9
 	unsigned int newByte;
-
 	newByte = channel | 0x80;
-
-	// midNote = (int(note) % 35) + 48;
-
-	// finalNote = char(midNote);
 	
 	#ifdef DEBUG
 	cout << "\t\t\t\tWriting Event Note Off on channel: " << hex << newByte << " note: " << note << " volume: " << volume << endl;
@@ -70,8 +58,6 @@ void programChange (unsigned char channel, unsigned int program)
 	
 	//convert to the channel and append with prefix c
 	unsigned int newByte;
-	//channel--;
-	channel--;
 	newByte = channel | 0xC0;
 	
 	#ifdef DEBUG

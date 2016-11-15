@@ -1,6 +1,6 @@
 //	Brendan Thompson
 //  main.h
-//  11/10/16
+//  11/15/16
 //
 //  Basic Header for writing a midi file. 
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
@@ -24,7 +24,8 @@ using namespace std;
 	// write byte = takes in a Hex value and prints it to the output file
 	void wb (unsigned value);
 		
-	// read byte = read one byte from the global input file
+	// rb = reads values from a file, converts them to notes between C3 and B5,
+		// and puts the notes into an array 
 	void rb (void);
 	
 	// writeVLQ = takes in a hex value and writes the converted array of VLQ Bytes to the file
@@ -48,13 +49,12 @@ using namespace std;
 	void writeTrackMelody (unsigned char noteArray[], int lengthArray);
 	void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volume);
 
+	//writeTrackChords
 	void writeTrackChords (unsigned char noteArray[], int lengthArray);
-	void makeMajorChord (unsigned char channel, unsigned char root, unsigned int volume);
-
-	void writeTrackDrums (int lengthArray);
-
+	void makeMajorChord (unsigned char channel, unsigned char root, unsigned int volume, unsigned int noteLength);
 
 	//writeTrackDrums = write track events for the drums to the file
+	void writeTrackDrums (int lengthArray);
 
 // *** Meta Events ***
 	// metaEndOfTrack = FF 2f 00 = writes end of track to the file
