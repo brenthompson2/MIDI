@@ -3,7 +3,7 @@
 //  prog7
 //  11/10/16
 //   
-//  Read in our Elis-Thompson-Sheet-Music-File <ETSMF> and output it as MIDI 
+//  Read in our Ellis-Thompson-Sheet-Music-File <ETSMF> and output it as MIDI 
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 
 #include "main.h"
