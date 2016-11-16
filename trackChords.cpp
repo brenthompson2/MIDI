@@ -78,10 +78,10 @@ void makeMajorChord (unsigned char channel, unsigned char root, unsigned int vol
 	noteOff (CHANNEL_2, root, volume); 
 
 	//turn note off	
-	writeEventDeltaTime (noteLength);
+	writeEventDeltaTime (0x00);
 	noteOff (CHANNEL_2, third, volume); 
 
 	//turn note off	
-	writeEventDeltaTime (noteLength);
+	writeEventDeltaTime (0x00);
 	noteOff (CHANNEL_2, fifth, volume); 
 }
