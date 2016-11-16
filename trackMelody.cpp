@@ -21,11 +21,11 @@ void writeTrackMelody (unsigned char noteArray[], int lengthArray) {
 
 	//event 2: 00 c0 0b = at delta 0 - set program of channel 1 - to program decimal 1, the Basic Piano
 		writeEventDeltaTime (0x00); // time = 0
-		programChange (CHANNEL_1, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
+		programChange (CHANNEL_1, 0x00); // new program = 0x0b = decimal 1 = (pg 17)
 	
 	//Pattern 1: for the first 4 measures, output them sequentially as Half notes
 		i = 0; 
-		for (i; i < 4; i++){
+		for (i; i < 8; i++){
 			noteInput = noteArray[i];
 			#ifdef DEBUG
 				cout<<"\t\t\tMelody Pattern1: note: "<< noteInput <<"count: "<< i <<endl;
@@ -98,7 +98,7 @@ void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volu
 	noteOn (CHANNEL_1, root, volume);
 
 	//turn note off	
-	writeEventDeltaTime (0x15); // time = 32
+	writeEventDeltaTime (0x18); // time = 32
 	noteOff (CHANNEL_1, root, volume); 
 
 	//turn note on
@@ -106,7 +106,7 @@ void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volu
 	noteOn (CHANNEL_1, second, volume);
 
 	//turn note off	
-	writeEventDeltaTime (0x15); // time = 32
+	writeEventDeltaTime (0x18); // time = 32
 	noteOff (CHANNEL_1, second, volume); 
 
 	//turn note on
@@ -114,7 +114,7 @@ void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volu
 	noteOn (CHANNEL_1, third, volume);
 
 	//turn note off	
-	writeEventDeltaTime (0x15); // time = 32
+	writeEventDeltaTime (0x18); // time = 32
 	noteOff (CHANNEL_1, third, volume); 
 
 	//turn note on
@@ -122,7 +122,7 @@ void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volu
 	noteOn (CHANNEL_1, fourth, volume);
 
 	//turn note off	
-	writeEventDeltaTime (0x15); // time = 32
+	writeEventDeltaTime (0x18); // time = 32
 	noteOff (CHANNEL_1, fourth, volume); 
 /*
 	//turn note on

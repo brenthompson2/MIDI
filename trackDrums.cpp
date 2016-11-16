@@ -26,60 +26,60 @@ void writeTrackDrums (int lengthArray) {
 			// cout<<"Pattern 1\n";
 
 			writeEventDeltaTime (0x60);
-			noteOn(CHANNEL_10, B1, 0x60);
+			noteOn(CHANNEL_10, 0x23, 0x60);
 
 			writeEventDeltaTime (0x60);
-			noteOn(CHANNEL_10, B1, 0x60);
+			noteOn(CHANNEL_10, 0x23, 0x60);
 		}
 
 	// Pattern 2: Bass on the beat, snare on the AND
 		for (i; i < (lengthArray/2); i++) {
 			writeEventDeltaTime (0x00);
-			noteOn(CHANNEL_10, B1, 0x60);
+			noteOn(CHANNEL_10, 0x23, 0x60);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 
 			writeEventDeltaTime (0x00);
-			noteOn(CHANNEL_10, B1, 0x30);
+			noteOn(CHANNEL_10, 0x23, 0x30);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 
 			writeEventDeltaTime (0x00);
-			noteOn(CHANNEL_10, B1, 0x30);
+			noteOn(CHANNEL_10, 0x23, 0x30);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 
 			writeEventDeltaTime (0x00);
-			noteOn(CHANNEL_10, B1, 0x30);
+			noteOn(CHANNEL_10, 0x23, 0x30);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 		}
 
 	// Pattern 3: Bass on the beat, snare on the AND, clap on 2 4
 		for (i; i < lengthArray; i++) {
 			writeEventDeltaTime (0x00);
-			noteOn(CHANNEL_10, B1, 0x60);
+			noteOn(CHANNEL_10, 0x23, 0x60);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 
 			writeEventDeltaTime (0x30);
-			noteOn(CHANNEL_10, B1, 0x60);
+			noteOn(CHANNEL_10, 0x23, 0x60);
 			writeEventDeltaTime (0x00);
-			noteOn(CHANNEL_10, Ds2, 0x60);
+			noteOn(CHANNEL_10, 0x27, 0x60);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 
 			writeEventDeltaTime (0x30);
-			noteOn(CHANNEL_10, B1, 0x60);
+			noteOn(CHANNEL_10, 0x23, 0x60);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 
 			writeEventDeltaTime (0x30);
-			noteOn(CHANNEL_10, B1, 0x60);
+			noteOn(CHANNEL_10, 0x23, 0x60);
 			writeEventDeltaTime (0x00);
-			noteOn(CHANNEL_10, Ds2, 0x60);
+			noteOn(CHANNEL_10, 0x27, 0x60);
 			writeEventDeltaTime (0x30);
-			noteOff(CHANNEL_10, D2, 0x60);
+			noteOff(CHANNEL_10, 0x2D, 0x60);
 		}
 
 	//event8: 81 50 b0 7b 00 = at delta decimal 208 - control change - all notes off 

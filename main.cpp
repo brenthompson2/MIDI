@@ -222,7 +222,7 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x17); wb (0x57);
+		wb (0x00); wb (0x00); wb (0x17); wb (0x3b);
 
 		GCOUNT = 0;
 

@@ -1,6 +1,4 @@
 **** Current Status ****
-11/15/16 3:30pm
+11/15/16 11:51pm
 
-- write the lengths for each track
-
-- 
+- Drum Tracks loading but only playing notes on some Midi reader programs
