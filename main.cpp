@@ -11,7 +11,7 @@
 //Global Declarations
 #ifndef GLOBAL
 #define GLOBAL
-	unsigned long int GCOUNT = 0;
+	unsigned long int GCOUNT;
 	ofstream globalOutputFile;
 	ifstream globalInputFile;
 	unsigned char noteArray[MAXARRAYSIZE];
@@ -196,8 +196,6 @@ void writeTrackChunk () {
 	
 	//TRACK 1
 		// MTrk [4 Bytes] (pg 5)
-		GCOUNT = 0;
-
 		#ifdef DEBUG
 		cout<<"\t\tWriting MTrk "<<endl;
 		#endif
@@ -206,12 +204,13 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x18); wb (0x6c);
+		wb (0x00); wb (0x00); wb (0x18); wb (0x64);
+
+		GCOUNT = 0;
 
 		writeTrackChords(noteArray, lengthArray);
 
 		cout<<"CHORDS LENGTH: "<<hex<<GCOUNT<<endl;
-		GCOUNT = 0;
 
 	//TRACK 2
 		// MTrk [4 Bytes] (pg 5)
@@ -223,27 +222,29 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x17); wb (0x5f);
+		wb (0x00); wb (0x00); wb (0x17); wb (0x57);
+
+		GCOUNT = 0;
 
 		writeTrackMelody(noteArray, lengthArray);
 
 		cout<<"MELODY LENGTH: "<<hex<<GCOUNT<<endl;
-		GCOUNT = 0;
 
-	// //TRACK 3
-	// 	// MTrk [4 Bytes] (pg 5)
-	// 	#ifdef DEBUG
-	// 	cout<<"\t\tWriting MTrk "<<endl;
-	// 	#endif
-	// 	wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
+	//TRACK 3
+		// MTrk [4 Bytes] (pg 5)
+		#ifdef DEBUG
+		cout<<"\t\tWriting MTrk "<<endl;
+		#endif
+		wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
 	
-	// 	#ifdef DEBUG
-	// 	cout<<"\t\tWriting Track Length "<<endl;
-	// 	#endif
-	// 	wb (0x00); wb (0x00); wb (0x22); wb (0xc0);
+		#ifdef DEBUG
+		cout<<"\t\tWriting Track Length "<<endl;
+		#endif
+		wb (0x00); wb (0x00); wb (0x22); wb (0xb8);
 		
-	// 	writeTrackDrums(lengthArray);
+		GCOUNT = 0;
+		
+		writeTrackDrums(lengthArray);
 
-	// 	cout<<"DRUMS LENGTH: "<<hex<<GCOUNT<<endl;
-	// 	GCOUNT = 0;
+		cout<<"DRUMS LENGTH: "<<hex<<GCOUNT<<endl;
 }

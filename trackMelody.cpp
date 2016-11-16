@@ -12,14 +12,13 @@ void writeTrackMelody (unsigned char noteArray[], int lengthArray) {
 	#ifdef DEBUG
 	cout<<"\t\tWriting Melody Track"<<endl;
 	#endif
-	
 	int i;
 	char noteInput;
 	
 	//event 1: 	00 ff 51 03 0f 42 40 == at delta 0 - set tempo - to hex 0f4240
 		writeEventDeltaTime (0x00); // time = 0
 		metaSetTempo (0x0f, 0x42, 0x40); // new tempo = decimal 1000000 microseconds per quarter note = 1 second per quarter note
-		
+
 	//event 2: 00 c0 0b = at delta 0 - set program of channel 1 - to program decimal 1, the Basic Piano
 		writeEventDeltaTime (0x00); // time = 0
 		programChange (CHANNEL_1, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
