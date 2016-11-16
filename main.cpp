@@ -196,6 +196,8 @@ void writeTrackChunk () {
 	
 	//TRACK 1
 		// MTrk [4 Bytes] (pg 5)
+		GCOUNT = 0;
+
 		#ifdef DEBUG
 		cout<<"\t\tWriting MTrk "<<endl;
 		#endif
@@ -204,7 +206,7 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x1a); wb (0x6c);
+		wb (0x00); wb (0x00); wb (0x18); wb (0x6c);
 
 		writeTrackChords(noteArray, lengthArray);
 
@@ -228,20 +230,20 @@ void writeTrackChunk () {
 		cout<<"MELODY LENGTH: "<<hex<<GCOUNT<<endl;
 		GCOUNT = 0;
 
-	//TRACK 3
-		// MTrk [4 Bytes] (pg 5)
-		#ifdef DEBUG
-		cout<<"\t\tWriting MTrk "<<endl;
-		#endif
-		wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
+	// //TRACK 3
+	// 	// MTrk [4 Bytes] (pg 5)
+	// 	#ifdef DEBUG
+	// 	cout<<"\t\tWriting MTrk "<<endl;
+	// 	#endif
+	// 	wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
 	
-		#ifdef DEBUG
-		cout<<"\t\tWriting Track Length "<<endl;
-		#endif
-		wb (0x00); wb (0x00); wb (0x22); wb (0xc0);
+	// 	#ifdef DEBUG
+	// 	cout<<"\t\tWriting Track Length "<<endl;
+	// 	#endif
+	// 	wb (0x00); wb (0x00); wb (0x22); wb (0xc0);
 		
-		writeTrackDrums(lengthArray);
+	// 	writeTrackDrums(lengthArray);
 
-		cout<<"DRUMS LENGTH: "<<hex<<GCOUNT<<endl;
-		GCOUNT = 0;
+	// 	cout<<"DRUMS LENGTH: "<<hex<<GCOUNT<<endl;
+	// 	GCOUNT = 0;
 }
