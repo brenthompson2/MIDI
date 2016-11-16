@@ -155,7 +155,7 @@ void writeHeadChunk () {
 	cout<<"\tWriting Head Chunk "<<endl;
 	#endif
 
-		unsigned int format;
+		unsigned format;
 	
 		//MThd [4 bytes] (pg 3)
 		#ifdef DEBUG
@@ -173,7 +173,7 @@ void writeHeadChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Head Format: "<< format <<endl;
 		#endif
-		wb (format);
+		wb (0x00); wb (format);
 		
 		numTracks = 3;
 		#ifdef DEBUG
@@ -204,7 +204,7 @@ void writeTrackChunk () {
 		#ifdef DEBUG
 		cout<<"\t\tWriting Track Length "<<endl;
 		#endif
-		wb (0x00); wb (0x00); wb (0x1a); wb (0x6b);
+		wb (0x00); wb (0x00); wb (0x1a); wb (0x6c);
 
 		writeTrackChords(noteArray, lengthArray);
 
