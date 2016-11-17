@@ -32,7 +32,7 @@ main: main.cpp trackChords.cpp trackMelody.cpp trackDrums.cpp metaEvents.cpp cha
 
 #removes exe and object files
 clean:
-	rm main
+	rm main prog7.mid
 	
 # g++ main.cpp trackEvents.cpp metaEvents.cpp channelMessages.cpp -o main
 # ./main
