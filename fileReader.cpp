@@ -1,5 +1,5 @@
 // FILE: FileReader.cpp
-// R England, Transy U
+// R England, Brendan Thompson, Andrew Elis Transy U
 // CS 3114 MIDI, Fall 2016
 //
 //      Read and parse a music file in NotMIDI format

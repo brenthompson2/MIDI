@@ -1,9 +1,9 @@
 //	Brendan Thompson
 //  main.cpp
 //  prog7
-//  11/15/16
+//  11/30/16
 //   
-//  Read in a file and output it as MIDI song
+//  Read in a notMIDI file and output it as a MIDI file
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 
 #include "main.h"
@@ -17,7 +17,7 @@
 	unsigned char noteArray[MAXARRAYSIZE];
 	unsigned int lengthArray;
 	unsigned char division;
-	unsigned char numTracks;
+	unsigned int numTracks;
 #endif
 
 int main(int argc, char** argv) {
@@ -26,14 +26,14 @@ int main(int argc, char** argv) {
 	char* file;
 	
 	#ifdef DEBUG
-	cout<< "Attempting to write MIDI file prog7.mid..."<< endl;
+	cout<< "Attempting to write MIDI file LoveWillCome.mid from the notMIDI file..."<< endl;
 	#endif
 	
 	//attempt to open globalOutputFile	
-	globalOutputFile.open("prog7.mid", ios::binary);
+	globalOutputFile.open("LoveWillCome.mid", ios::binary);
 	if (!globalOutputFile)
 	{
-		cerr<< "Can't open prog7.mid; aborting." <<endl;
+		cerr<< "Can't open LoveWillCome.mid; aborting." <<endl;
 		return 0;
 	}
 	
@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    fileReader (argv[1]);
+   // fileReader (argv[1]); // IDK what this line is from
 
     //populate the noteArray
     rb();
@@ -80,14 +80,17 @@ void rb (){
 	unsigned char value;
 
 	lengthArray = 0;
+	int i = 0;
 
-	for(int i = 0; i < MAXARRAYSIZE; i++){
+
+
+	while ((i < MAXARRAYSIZE) && (!globalInputFile.eof())){
 		globalInputFile>> hex>> value;
+
 		#ifdef DEBUG
 		cout<<"\t\tRB = "<< char(value)<<endl;
 		#endif
-		if (globalInputFile.eof()){ break;}
-
+		
 		value = (int(value) % 35) + 48;
 
 		noteArray[i] = value;
