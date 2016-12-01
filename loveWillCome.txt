@@ -1,0 +1,264 @@
+//// Love Will Come, by Vince Guaraldi
+
+/ Number of Tracks
+N 2
+
+/ TRACK 1: TREBLE
+/ Measure 0
+M   0
+2.0   D4     Q
+
+3.0   G4     Q
+
+/ Measure 1
+M   1
+0.0   B4     H
+0.0   FS4    W
+0.0   D4     W
+
+2.0   B4     Q
+
+3.0   B4     Q
+
+/ Measure 2
+M   2
+0.0   B4     H
+0.0   G4     W
+0.0   D4     W
+
+2.0   A4     Q
+
+3.0   G4     Q
+
+/ Measure 3
+M   3
+0.0   A4     H
+0.0   E4     W
+
+2.0   E4     Q
+
+3.0   G4     Q
+
+/ Measure 4
+M   4
+0.0   E4     H
+0.0   F4     H
+
+2.0   D4     Q
+
+3.0   G4     Q
+
+
+/ Measure 31
+M   31
+0.0   C5     W
+0.0   G4     W
+0.0   E4     W
+0.0   D5     WH
+
+/ Measure 32
+M   32
+0.0   F4     H
+0.0   A4     H
+
+2.0   F4     H
+2.0   E5     H
+2.0   C5     Q
+
+3.0   B4     Q
+
+/ Measure 33
+M   33
+0.0   E4     Q
+0.0   G4     WH
+
+1.0   E4     H
+
+3.0   E4     Q
+
+/ Measure 34
+M   34
+0.0   EF4    H
+
+2.0   D5     Q
+
+3.0   B4     Q
+
+/ Measure 35
+M  35
+0.0   G4     WH
+0.0   D4     Q
+
+1.0   D4     H
+
+2.0   D4     Q
+
+/ Measure 36
+M  36
+0.0   DF4    H
+0.0   EF4    H
+
+2.0   C4     H
+2.0   E4     Q
+
+3.0   G4     Q
+
+/ Measure 37
+M  37
+0.0   A4     WWQ
+0.0   FS4    Q
+0.0   B3     Q
+
+1.0   FS4    H
+1.0   B3     H
+
+3.0   FS4    Q
+3.0   B3     Q
+
+/ Measure 38
+M  38
+0.0   A3     Q
+0.0   E4     Q
+
+1.0   A3     H
+1.0   E4     H
+
+3.0   A3     Q
+3.0   E4     Q
+
+/ Measure 39
+M  39
+0.0   FS4    WW
+0.0   B3     WW
+
+1.0   D5     Q
+
+2.0   A5     Q
+
+3.0   D6     Q
+
+/ Measure 40
+M  40
+0.0   A6     W
+
+/ (end of track 1)
+XX
+
+
+
+/ TRACK 2: BASE
+/ Measure 0
+/ (empty)
+
+/ Measure 1
+M   1
+0.0   G3     Q
+
+1.0   G2     HQ
+
+/ Measure 2
+M   2
+0.0   E3     Q
+
+1.0   E2     HQ
+
+/ Measure 3
+M   3
+0.0   CS3    Q
+
+1.0   B3     HQ
+
+/ Measure 4
+M   4
+0.0   D3     Q
+
+1.0   C4     HQ
+
+
+
+/ Measure 31
+M   31
+0.0   A3     Q
+
+1.0   E3     Q
+
+2.0   C4     Q
+
+3.0   B3     Q
+
+/ Measure 32
+M   32
+0.0   C4     H
+0.0   G3     H
+
+2.0   AF3    H
+2.0   G2     H
+
+/ Measure 33
+M   33
+0.0   B3     Q
+0.0   G3     Q
+0.0   CS3    Q
+
+1.0   B3     H
+1.0   CS3    H
+
+3.0   B3     Q
+3.0   CS3    Q
+
+/ Measure 34
+M   34
+0.0   BF3    W
+0.0   C3     W
+
+/ Measure 35
+M   35
+0.0   A3     Q
+0.0   B2     Q
+
+1.0   A3     H
+1.0   B2     H
+
+3.0   A3     Q
+3.0   B2     Q
+
+/ Measure 36
+M   36
+0.0   G3     H
+0.0   BF2    H
+
+2.0   G3     H
+2.0   A2     H
+
+/ Measure 37
+M   37
+0.0   D3     Q
+0.0   G2     Q
+
+1.0   D3     H
+1.0   G2     H
+
+3.0   D3     Q
+3.0   G2     Q
+
+/ Measure 38
+M   38
+0.0   C3     Q
+0.0   F2     Q
+
+1.0   C3     H
+1.0   F2     H
+
+3.0   C3     Q
+3.0   F2     Q
+
+/ Measure 39
+M   39
+0.0   D3     WW
+0.0   G2     WW
+
+/ Measure 40
+/ (tied notes only)
+
+/ (end of track 2)
+XX

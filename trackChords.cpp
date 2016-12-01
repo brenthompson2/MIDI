@@ -22,7 +22,7 @@ void writeTrackChords (unsigned char noteArray[], int lengthArray) {
 		
 	//event 2: 00 c0 0b = at delta 0 - set program of channel 1 - to program decimal 1, the Basic Piano
 		writeEventDeltaTime (0x00); // time = 0
-		programChange (CHANNEL_2, 0x6D); // new program = 0x0b = decimal 1 = (pg 17)
+		programChange (CHANNEL_2, 0x00); // new program = 0x0b = decimal 1 = (pg 17)
 	
 	//Pattern 1: for first half of the array, output chords sequentially as Half notes
 		i = 0; 
