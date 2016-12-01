@@ -4,37 +4,20 @@
 //
 //      Read and parse a music file in NotMIDI format
 //
-#include <iostream>
-#include <stdio.h>
-using namespace std;
 
-// symbolic constants
-const   unsigned BUFF_SIZE = 200;
-const   char    COMMENT_CHAR = '/';
-const   char    TRACK_COUNT_CHAR = 'N';
-const   char    MEASURE_CHAR = 'M';
+#include "main.h"
 
-// function prototypes
-void processNote (char buffer[]);
-void processTrackCount (char buffer[]);
-void processMeasureNumber (char buffer[]);
-void processNoteName (char buffer[]);
-void processNoteDuration (char buffer[]);
-void processBeatNumber (char buffer[]);
-
-// global variables (to be treated like private vars in a C++ class)
-unsigned trackCount;
-unsigned measureNumber;
-
+    unsigned trackCount;
+    unsigned measureNumber;
 
 ////
 /// main program
 //
-int main (void) {
+void fileReader (char* fileName) {
     char   buffer[BUFF_SIZE];
     
     // try to open the NotMIDI format input file for reading
-    FILE  *inputFile  = fopen ("LoveWillCome.txt", "r");
+    FILE  *inputFile  = fopen (fileName, "r");
     
     if (!inputFile) {
         cout << "ERROR: Couldn't open input file" << endl;
@@ -81,7 +64,6 @@ int main (void) {
            trackCount, measureNumber);
     
     printf ("\n\nDone.\n");
-    return 0;
 }
 
 // processNote

@@ -20,9 +20,10 @@
 	unsigned char numTracks;
 #endif
 
-int main() {
+int main(int argc, char** argv) {
 	
 	string fileName;
+	char* file;
 	
 	#ifdef DEBUG
 	cout<< "Attempting to write MIDI file prog7.mid..."<< endl;
@@ -45,6 +46,8 @@ int main() {
         cerr << "Can't open " << fileName << " for input; aborting." << endl;
         return 0;
     }
+
+    fileReader (argv[1]);
 
     //populate the noteArray
     rb();

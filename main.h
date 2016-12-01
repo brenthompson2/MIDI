@@ -16,8 +16,14 @@
 #include <fstream>
 #include <iomanip>
 #include "MIDIconst.h"
+#include <stdio.h>
 using namespace std;
 
+// symbolic constants
+const   unsigned BUFF_SIZE = 200;
+const   char    COMMENT_CHAR = '/';
+const   char    TRACK_COUNT_CHAR = 'N';
+const   char    MEASURE_CHAR = 'M';
 
 // *** Main Function Declarations ****
 
@@ -76,5 +82,20 @@ using namespace std;
 	
 	// controlChange = Bchannel = change control of controller to value (pg 10)
 	void controlChange (unsigned char channel, unsigned int controller, unsigned int value);
+
+// *** File Reader ***
+	// function comment here
+	void processNote (char buffer[]);
+	// function comment here
+	void processTrackCount (char buffer[]);
+	// function comment here
+	void processMeasureNumber (char buffer[]);
+	// function comment here
+	void processNoteName (char buffer[]);
+	// function comment here
+	void processNoteDuration (char buffer[]);
+	// function comment here
+	void processBeatNumber (char buffer[]);
+
 
 #endif
