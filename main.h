@@ -34,7 +34,7 @@ struct EVENT {
 
 struct BEAT {
 	int numEvents;
-	EVENT eventArray[10];
+	EVENT eventList[30];
 };
 
 // *** Main Function Declarations ****
