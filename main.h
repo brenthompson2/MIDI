@@ -25,6 +25,18 @@ const   char    COMMENT_CHAR = '/';
 const   char    TRACK_COUNT_CHAR = 'N';
 const   char    MEASURE_CHAR = 'M';
 
+struct EVENT {
+	string eventName;
+	char data1[BUFF_SIZE];
+	char data2[BUFF_SIZE];
+	char data3[BUFF_SIZE];
+};
+
+struct BEAT {
+	int numEvents;
+	EVENT eventArray[10];
+};
+
 // *** Main Function Declarations ****
 
 	// write byte = takes in a Hex value and prints it to the output file

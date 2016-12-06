@@ -13,7 +13,7 @@
 ////
 /// main program
 //
-void fileReader (char* fileName) {
+void fileReader (char* fileName, BEAT beatsArray[]) {
     char   buffer[BUFF_SIZE];
     
     // try to open the NotMIDI format input file for reading
@@ -89,6 +89,8 @@ void processNote (char buffer[]) {
     printf ("\t\tnoteDuration: %s", noteDuration);
     processNoteDuration (noteDuration);
     printf ("\n");
+
+    beatsArray.add()
 }
 
 // processTrackCount
