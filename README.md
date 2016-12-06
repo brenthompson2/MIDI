@@ -18,22 +18,26 @@ To push to repo:
 
 **** PROJECT OUTLINE ****
 main.cpp = basic functions for writing a standard midi file
-    including: wb, writeVLQ, writeSMF, writeHeader, writeTrackLength, etc.
-    calls writeTrackEvent from trackEvents.cpp to write individual tracks
-    will contain algorithms for making chords, arpeggios, scales, etc.
+    including: wb, writeVLQ, writeSMF, writeHeader, etc.
+    calls writeTrackEvent from trackMelody.cpp to write individual tracks
 
 channelMessages.cpp = where channel messages are written
-
 metaEvents.cpp = where metaEvents are written
+MIDIconst.h = creates a bunch of constants that make the MIDI code easier for the human to read and write
 
-MIDIconst.h = creates a bunch of constants that make the code easier for the human to read and write
+trackMelody.cpp = where the measureList will be translated into the MIDI file
 
-trackMelody.cpp = where a track is written. calls the individual functions to write the events for a track
-	calls functions from channelMessages.cpp and metaEvents.cpp to write individual events
+fileReader.cpp = where the notMIDI file will be read into the measureList
 
-trackChords.cpp = where a track is written. calls the individual functions to write the events for a track
-	calls functions from channelMessages.cpp and metaEvents.cpp to write individual events
-	
-trackDrums.cpp = where a track is written. calls the individual functions to write the events for a track
-	calls functions from channelMessages.cpp and metaEvents.cpp to write individual events
+measureList.cpp = Implementation for measureList ADT
+	represented with a measureList and numMeasures
+
+measure.cpp = Implementation of measure ADT
+	represented with an array of 16 BEAT elements
+
+BEAT = represented as a Struct of numEvents and an eventArray of 10 EVENT elements
+
+EVENT = represented as a Struct with eventName and 3 data variables
+
+
 

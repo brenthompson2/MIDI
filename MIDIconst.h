@@ -7,6 +7,10 @@
 //   Various symbolic constants that may be useful in generating
 //      Standard MIDI Files
 //
+//	CHANNEL_1 through CHANNEL_16
+//	Notes C0 through G9
+//	VOL_SOFT, VOL_MEDIUM, VOL_LOUD
+//
 #ifndef MIDICONST_H
 #define MIDICONST_H
 

@@ -1,4 +1,14 @@
 **** Current Status ****
-11/15/16 11:51pm
+12/6/16 3:02am
 
-- Drum Tracks loading but only playing notes on some Midi reader programs
+- Work on the measure Object
+	- Header file
+	- Array of 15 BEAT elements, each representing 16th notes
+
+- Work on the eventArray Object
+	- Header file
+	- Vector? Linked List? Dynamically allocated?
+		- list of measure objects
+		- public int numMeasures
+	- indexOfEvent = [(measureNumber * 16) + (mainBeat * 4) + subBeat]
+

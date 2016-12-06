@@ -1,8 +1,8 @@
 //	Brendan Thompson
 //  main.h
-//  11/15/16
+//  12/05/16
 //
-//  Basic Header for writing a midi file. 
+//  Header for reading a notMIDI file and outputting is in MIDI
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 
 #ifndef    MAIN_H
