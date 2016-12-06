@@ -35,8 +35,9 @@
 		int eventIndex;
 
 		&currentBeat = beatArray[subBeatIndex];
-		eventIndex = &currentBeat.numEvents + 1;
+		eventIndex = &currentBeat.numEvents++;
+		
 
-		&currentBeat.eventArray[eventIndex] = newEvent;
+		&currentBeat.eventList[eventIndex] = newEvent;
 	}
 

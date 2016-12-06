@@ -2,7 +2,7 @@
 // R England, Brendan Thompson, Andrew Elis Transy U
 // CS 3114 MIDI, Fall 2016
 //
-//      Read and parse a music file in NotMIDI format
+//      Read and parse a music file from NotMIDI format into the measureList
 //
 
 #include "main.h"
@@ -13,12 +13,13 @@
 ////
 /// main program
 //
-void fileReader (char* fileName, BEAT beatsArray[]) {
+void fileReader (char* fileName, MeasureList measureList) {
     char   buffer[BUFF_SIZE];
     
     // try to open the NotMIDI format input file for reading
     FILE  *inputFile  = fopen (fileName, "r");
-    
+    MeasureList measureList = new MeasureList;
+
     if (!inputFile) {
         cout << "ERROR: Couldn't open input file" << endl;
         exit (1);
@@ -112,6 +113,8 @@ void processMeasureNumber (char buffer[]) {
     // pick apart the pieces of the measure number line
     char    garbage[BUFF_SIZE];
     sscanf (buffer, "%s %u", garbage, &measureNumber);
+    Measure *measure = new Measure;
+    measureList.push_back(measure);
     printf ("\tCurrent measure number is %u\n\n", measureNumber);
 }
 

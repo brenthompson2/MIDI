@@ -2,19 +2,17 @@
 // measureList.cpp
 
 // creates the measureList abstract data type
-	// Vector? Linked List? Dynamically allocated?
+	// Vector
 	//		list of measure objects
-	// 		public int numMeasures
 	// indexOfEvent = [(measureNumber * 16) + (mainBeat * 4) + subBeat]
 
 // constructor:
 	public measureList(){
-		Measure measureList[BUFF_SIZE]; // HOW REPRESENT?
-		int numMeasures = 0;
+		Measure measureList[BUFF_SIZE]; //change to a vector
 	}
 
 // Accessors:
-
+	MeasureList:MeasureList.getMeasure(int measureNum);
 
 // Mutators:
 	// takes in a measureNum, subBeatIndex, and the newEvent
