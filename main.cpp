@@ -28,21 +28,21 @@ int main(int argc, char** argv) {
 	cout<< "Attempting to write MIDI file loveWillCome.mid from the notMIDI file loveWillCome.txt..."<< endl;
 	#endif
 	
-	//attempt to open globalOutputFile	
+	// attempt to open globalOutputFile	
 	globalOutputFile.open("loveWillCome.mid", ios::binary);
-	if (!globalOutputFile)loveWillCome.txt
+	if (!globalOutputFile)
 	{
 		cerr<< "Can't open loveWillCome.mid; aborting..." <<endl;
-		return 0;
+		exit(1);
 	}
 	
-	//attempt to open globalInputFile
-    cout << endl << "Attempting to read in file: loveWillCome.txt..." << endl;
-    globalInputFile.open(fileName.c_str(), ios::binary);
-    if (!globalInputFile) {
-        cerr << "Can't open loveWillCome.txt for input; aborting..." << endl;
-        return 0;
-    }
+	// // attempt to open globalInputFile
+	// cout << endl << "Attempting to read in file: loveWillCome.txt..." << endl;
+	// globalInputFile.open(fileName.c_str(), ios::binary);
+	// if (!globalInputFile) {
+	//     cerr << "Can't open loveWillCome.txt for input; aborting..." << endl;
+	//     return 0;
+	// }
 
 
 	fileReader (argv[1]);

@@ -6,8 +6,8 @@
 
 default: main
 
-main: main.cpp trackChords.cpp trackMelody.cpp trackDrums.cpp metaEvents.cpp channelMessages.cpp fileReader.cpp main.h MIDIconst.h
-	g++ fileReader.cpp main.cpp trackChords.cpp trackMelody.cpp trackDrums.cpp metaEvents.cpp channelMessages.cpp -o main
+main: main.cpp metaEvents.cpp channelMessages.cpp fileReader.cpp main.h MIDIconst.h
+	g++ fileReader.cpp main.cpp metaEvents.cpp channelMessages.cpp -o main
 
 #new: main.o trackDrums.o trackMelody.o trackChords.o metaEvents.o channelMessages.o
 #	g++ -o new main.o trackDrums.o trackMelody.o trackChords.o channelMessages.o metaEvents.o 
