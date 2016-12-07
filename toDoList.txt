@@ -1,18 +1,18 @@
 **** Current Status ****
-12/6/16 3:02am
+12/7/16 
 
-- Work on the measure Object
+measure.cpp:
 	- Header file
-	- Array of 15 BEAT elements, each representing 16th notes
 
-- Work on the eventArray Object
+measureList:
 	- Header file
-	- Vector? Linked List? Dynamically allocated?
-		- list of measure objects
-		- public int numMeasures
-	- indexOfEvent = [(measureNumber * 16) + (mainBeat * 4) + subBeat]
 
 FileReader:
-	- processNote function note off time
+	- fix processNote noteOff time
+		- relative to noteDuration, currentMeasure, currentBeat
+	- when read in new track, create new measureArray?
+		- maybe in Write track, when reach new track event, turn off all notes, write end track, write track head, then continue
 	
-
+WriteTrack:
+	- in main.h, make SIXTEENTH_DELTA == 1/4th of a beat
+		- relative to main.cpp -> writeHeadChunk -> division and also writeTrack.cpp -> tempo

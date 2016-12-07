@@ -1,7 +1,7 @@
-//	Brendan Thompson
+//	Brendan Thompson & Andrew Ellis
 //  main.cpp
-//  prog7
-//  11/30/16
+//  prog8
+//  12/6/16
 //   
 //  Read in a notMIDI file and output it as a MIDI file
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 	MeasureList measureList = new MeasureList;
 
 
-	fileReader (measureList);
+	fileReader(measureList);
 
 	writeSMF ();	
 	

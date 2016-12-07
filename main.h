@@ -1,6 +1,6 @@
-//	Brendan Thompson
+//	Brendan Thompson & Andrew Ellis
 //  main.h
-//  12/05/16
+//  12/7/16
 //
 //  Header for reading a notMIDI file and outputting is in MIDI
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
@@ -21,15 +21,16 @@ using namespace std;
 
 // symbolic constants
 const   unsigned BUFF_SIZE = 200;
+const   unsigned SMALL_BUFF_SIZE = 5;
 const   char    COMMENT_CHAR = '/';
 const   char    TRACK_COUNT_CHAR = 'N';
 const   char    MEASURE_CHAR = 'M';
-
+const 	unsigned char SIXTEENTH_DELTA = 0xd0;
 struct EVENT {
 	string eventName;
-	char data1[10];
-	char data2[10];
-	char data3[10];
+	unsigned char data1;
+	unsigned char data2;
+	unsigned char data3;
 };
 
 struct BEAT {
@@ -37,7 +38,7 @@ struct BEAT {
 	EVENT eventList[30];
 };
 
-// *** Main Function Declarations ****
+// *** main.cpp Function Declarations ****
 
 	// write byte = takes in a Hex value and prints it to the output file
 	void wb (unsigned value);
@@ -61,17 +62,21 @@ struct BEAT {
 	// writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
 	void writeEventDeltaTime (unsigned int numTicks);
 
-// *** Track Events ***
+// *** writeTrack.cpp ***
+	// takes in a measureList and writes it to the midi file
+	void writeTrack(MeasureList measureList);
+
+	// takes in an event and writes it to a midi file
+	void processEvent(EVENT currentEvent);
 	
 
-// *** EVENTS ***
+// *** events.cpp ***
 	// *** Meta Events ***
 		// metaEndOfTrack = FF 2f 00 = writes end of track to the file
 		void metaEndOfTrack ();
 		
 		// metaSetTempo = FF 51 03 = takes in the three bytes to set the tempo to and writes the event to the file (pg 8)
 		void metaSetTempo (unsigned int a, unsigned int b, unsigned int c);
-
 
 	// *** Channel Messages ***
 		// note on = 9channel = turn on note on channel at volume
@@ -87,6 +92,8 @@ struct BEAT {
 		void controlChange (unsigned char channel, unsigned int controller, unsigned int value);
 
 // *** File Reader ***
+	// takes in a measure list and populates it with the data from the file
+	void fileReader(MeasureList measureList);
 	// function comment here
 	void processNote (char buffer[]);
 	// function comment here

@@ -1,5 +1,5 @@
 // FILE: FileReader.cpp
-// R England, Brendan Thompson, Andrew Elis Transy U
+// R England, Brendan Thompson, Andrew Ellis Transy U
 // CS 3114 MIDI, Fall 2016
 //
 //      Read and parse a music file from NotMIDI format into the measureList
@@ -32,7 +32,9 @@ void fileReader (MeasureList measureList) {
         if (temp) {
             // comment --- ignore
             if (buffer[0] == COMMENT_CHAR) {
+                #ifdef DEBUG
                 printf ("(Comment)\n");
+                #endif
             }
         
             // first char is a digit? then this is the start of a Note line
@@ -53,7 +55,8 @@ void fileReader (MeasureList measureList) {
             // catch-all for everything else
             // (shouldn't see this message from a finished program!)
             else {
-                printf ("(unknown line type: -->%s<--)\n", buffer);
+                printf ("(ERROR: unknown line type: -->%s<--)\n", buffer);
+                exit(1);
             }
         }
     
@@ -68,54 +71,56 @@ void fileReader (MeasureList measureList) {
 }
 
 // processNote
-//    process the info for a Note event line
-void processNote (char buffer[]) {
-    printf ("Note line: -->%s<--\n", buffer);
-    
+//    process the info for a Note event line and put it in the 
+void processNote(char buffer[]) {
+    int beatIndex;
+    unsigned char noteNumber;
+
+    #ifdef DEBUG
+        printf("Note line: -->%s<--\n", buffer);
+    #endif
+
     // pick apart the pieces of a Note event line
-    char   beatNumber[BUFF_SIZE];
-    char   noteName[BUFF_SIZE];
-    char   noteDuration[BUFF_SIZE];
+    char   beatNumber[SMALL_BUFF_SIZE];
+    char   noteName[SMALL_BUFF_SIZE];
+    char   noteDuration[SMALL_BUFF_SIZE];
     sscanf (buffer, "%s %s %s", beatNumber, noteName, noteDuration);
-    
+
     // the beat...
-    printf ("\t\tbeat: %s", beatNumber);
-    processBeatNumber (beatNumber);
+    beatIndex = processBeatNumber(beatNumber);
     
     // the note name...
-    printf ("\t\tnoteName: %s", noteName);
-    processNoteName (noteName);
+    noteNumber = processNoteName(noteName);
     
     // and the duration
-    printf ("\t\tnoteDuration: %s", noteDuration);
-    processNoteDuration (noteDuration);
+    processNoteDuration(noteDuration, beatIndexOff);
     printf ("\n");
 
+    // add the noteOn event to measureList
     EVENT noteOnEvent;
-    noteOnEvent.eventName = "NoteOn";
-    noteOnEvent.data1 = noteName;
-    noteOnEvent.data2 = noteDuration;
+    noteOnEvent.eventName = "noteOn";
+    noteOnEvent.data1 = noteNumber;
     measureList.addEvent(measureNumber, beatNumber, noteOnEvent)
 
+    // add the noteOff event to meaureList
     EVENT noteOffEvent;
-    noteOffEvent.eventName = "NoteOn";
-    noteOffEvent.data1 = noteName;
-    noteOffEvent.data2 = noteDuration;
-
-    // turn the note off at the right spot
-        measureNumber++;
+    noteOffEvent.eventName = "noteOff";
+    noteOffEvent.data1 = noteNumber;
     measureList.addEvent(measureNumber, beatNumber, noteOffEvent)
 }
 
 // processTrackCount
 //    set the global track count for the MIDI file
-void processTrackCount (char buffer[]) {
-    printf ("Track count line: -->%s<--", buffer);
-    
+//    how create another measureList for new track
+void processTrackCount(char buffer[]) {
     // pick apart the pieces of the track count line
-    char    garbage[BUFF_SIZE];
+    char    garbage[SMALL_BUFF_SIZE];
     sscanf (buffer, "%s %u", garbage, &trackCount);
-    printf ("\t(Track count is now %u)\n", trackCount);
+
+    #ifdef DEBUG
+        printf ("Track count line: -->%s<--", buffer);
+        printf ("\t(Track count is now %u)\n", trackCount);
+    #endif  
 }
 
 // processMeasureNumber
@@ -124,7 +129,7 @@ void processMeasureNumber (char buffer[]) {
     printf ("Measure number line: -->%s<--\n", buffer);
 
     // pick apart the pieces of the measure number line
-    char    garbage[BUFF_SIZE];
+    char    garbage[SMALL_BUFF_SIZE];
     sscanf (buffer, "%s %u", garbage, &measureNumber);
     printf ("\tCurrent measure number is %u\n\n", measureNumber);
 
@@ -132,14 +137,27 @@ void processMeasureNumber (char buffer[]) {
 }
 
 // processNoteName
-//    parse the string representation of a note name
-void processNoteName (char buffer[]) {
+//    parse the string representation of a note name and return the MIDI note number
+int processNoteName (char buffer[]) {
     bool  sharp = false, flat = false;
     unsigned noteOctaveNumber;
+
+    int noteNumber;
+    int letterMultiplier;
     
     // first char has to the be base note name (I think)
     char noteLetterName = buffer[0];
-    
+    letterMultiplier = noteLetterName - 'A'; // A = 0, B = 1, C = 2, D = 3, E = 4, F = 5, G = 6
+    switch (letterMultiplier){
+        case 0 : letterMultiplier = letterMultiplier + 9; // A = 9
+        case 1 : letterMultiplier = letterMultiplier + 10; // B = 11
+        case 2 : letterMultiplier = letterMultiplier - 2; // C = 0
+        case 3 : letterMultiplier = letterMultiplier - 1; // D = 2
+        case 4 : letterMultiplier; // E = 4
+        case 5 : letterMultiplier; // F = 5
+        case 6 : letterMultiplier = letterMultiplier + 1; // G = 7
+    }
+
     // second char could be either sharp/flat or octave number
     if (isdigit (buffer[1])) {
         // second char is a number: it's the octave this note is in
@@ -157,16 +175,25 @@ void processNoteName (char buffer[]) {
         // ... and third char is the octave number
         noteOctaveNumber = buffer[2] - '0';
     }
+
+    // convert all of the data into a note number
+    noteNumber = (letterMultiplier + (noteOctaveNumber * 12))
+
     
-    // print what we know about this note
-    printf ("\t(That's Letter name: %c", noteLetterName);
-    if (sharp) {
-        printf ("-sharp");
-    }
-    if (flat) {
-        printf ("-flat");
-    }
-    printf ("  octave: %u)\n", noteOctaveNumber);
+    #ifdef DEBUG
+        // print what we know about this note
+        printf ("\t(That's Letter name: %c", noteLetterName);
+        if (sharp) {
+            printf ("-sharp");
+        }
+        if (flat) {
+            printf ("-flat");
+        }
+        printf ("  octave: %u)\n", noteOctaveNumber);
+        printf ("  noteNumber: %d)\n", noteNumber);
+    #endif
+
+    return noteNumber;
 }
 
 // processNoteDuration
@@ -180,9 +207,11 @@ void processNoteDuration (char buffer[]) {
 }
 
 // processBeatNumber
-//    split the beat, man
-void processBeatNumber (char buffer[]) {
-    unsigned mainBeat, subBeat;
+//    split the beat into main and sub and then calculate the beatNumber
+int processBeatNumber (char buffer[]) {
+    int beatNumber;
     sscanf (buffer, "%u.%u", &mainBeat, &subBeat);
-    printf ("     (That's main beat %u, subbeat %u)\n", mainBeat, subBeat);
+    &beatNumber = ((mainBeat * 4) + subBeat);
+    return beatNumber;
+    printf ("     (MainBeat %u and subBeat %u is MeasureIndex %d)\n", &mainBeat, &subBeat, &beatNumber);
 }

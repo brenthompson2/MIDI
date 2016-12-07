@@ -1,6 +1,6 @@
-//	Brendan Thompson
+//	Brendan Thompson & Andrew Ellis
 //  events.cpp
-//  11/10/16
+//  12/7/16
 //
 //  Functions that write Channel Messages and Meta Events events
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
