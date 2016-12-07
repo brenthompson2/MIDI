@@ -2,16 +2,16 @@
 12/7/16 
 
 measure.cpp:
-	- Header file
+	- deconstructor?
 
 measureList:
-	- Header file
+	- deconstructor?
 
 FileReader:
 	- fix processNote noteOff time
 		- relative to noteDuration, currentMeasure, currentBeat
-	- when read in new track, create new measureArray?
-		- maybe in Write track, when reach new track event, turn off all notes, write end track, write track head, then continue
+	- when read in new track, how create new measureList?
+		- maybe in Write track, when reach new track event, turn off all notes, write end track, write new track head, then continue processingEvents
 	
 WriteTrack:
 	- in main.h, make SIXTEENTH_DELTA == 1/4th of a beat
