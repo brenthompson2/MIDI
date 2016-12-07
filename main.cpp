@@ -25,27 +25,21 @@ int main(int argc, char** argv) {
 	char* file;
 	
 	#ifdef DEBUG
-	cout<< "Attempting to write MIDI file loveWillCome.mid from the notMIDI file loveWillCome.txt..."<< endl;
+	cout<< "Attempting to write MIDI file prog8.mid from a notMIDI..."<< endl;
 	#endif
 	
 	// attempt to open globalOutputFile	
-	globalOutputFile.open("loveWillCome.mid", ios::binary);
+	globalOutputFile.open("prog8.mid", ios::binary);
 	if (!globalOutputFile)
 	{
-		cerr<< "Can't open loveWillCome.mid; aborting..." <<endl;
+		cerr<< "Can't open prog8.mid; aborting..." <<endl;
 		exit(1);
 	}
 	
-	// // attempt to open globalInputFile
-	// cout << endl << "Attempting to read in file: loveWillCome.txt..." << endl;
-	// globalInputFile.open(fileName.c_str(), ios::binary);
-	// if (!globalInputFile) {
-	//     cerr << "Can't open loveWillCome.txt for input; aborting..." << endl;
-	//     return 0;
-	// }
+	MeasureList measureList = new MeasureList;
 
 
-	fileReader (argv[1]);
+	fileReader (measureList);
 
 	writeSMF ();	
 	
@@ -209,43 +203,7 @@ void writeTrackChunk () {
 
 		GCOUNT = 0;
 
-		writeTrackChords(noteArray, lengthArray);
+		writeTrack(measureList);
 
 		cout<<"CHORDS LENGTH: "<<hex<<GCOUNT<<endl;
-
-	//TRACK 2
-		// MTrk [4 Bytes] (pg 5)
-		#ifdef DEBUG
-		cout<<"\t\tWriting MTrk "<<endl;
-		#endif
-		wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
-	
-		#ifdef DEBUG
-		cout<<"\t\tWriting Track Length "<<endl;
-		#endif
-		wb (0x00); wb (0x00); wb (0x17); wb (0x3b);
-
-		GCOUNT = 0;
-
-		writeTrackMelody(noteArray, lengthArray);
-
-		cout<<"MELODY LENGTH: "<<hex<<GCOUNT<<endl;
-
-	//TRACK 3
-		// MTrk [4 Bytes] (pg 5)
-		#ifdef DEBUG
-		cout<<"\t\tWriting MTrk "<<endl;
-		#endif
-		wb (0x4d); wb (0x54); wb (0x72); wb (0x6b);
-	
-		#ifdef DEBUG
-		cout<<"\t\tWriting Track Length "<<endl;
-		#endif
-		wb (0x00); wb (0x00); wb (0x22); wb (0xb8);
-		
-		GCOUNT = 0;
-		
-		writeTrackDrums(lengthArray);
-
-		cout<<"DRUMS LENGTH: "<<hex<<GCOUNT<<endl;
 }

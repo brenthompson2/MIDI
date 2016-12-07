@@ -8,17 +8,35 @@
 
 // constructor:
 	public measureList(){
-		Measure measureList[BUFF_SIZE]; //change to a vector
+		Measure measureList<>; //vector
 	}
 
 // Accessors:
-	MeasureList:MeasureList.getMeasure(int measureNum);
+	Measure MeasureList:MeasureList.getMeasure(int measureNum){
+		Measure *tempMeasure;
+		&tempMeasure = measureList<measureNum>;
+		return tempMeasure;
+	}
 
 // Mutators:
+
+	// create a new measure at the measureNum
+	public void MeasureList:MeasureList.newMeasure(int measureNum){
+		Measure *tempMeasure;
+		measureList.push_back(tempMeasure);
+	}
+
 	// takes in a measureNum, subBeatIndex, and the newEvent
 		// adds it to the measureList at the correct location
-	public measureList.addEvent(int measureNum, int subBeatIndex, EVENT newEvent){
+	public void measureList.addEvent(int measureNum, int subBeatIndex, EVENT newEvent){
 		Measure *currentMeasure;
+		int numMeasures = measureList.size;
+
+		// if the measure doesn't already exist, make it
+		while (numMeasures < measureNum){
+			measureList.newMeasure(numMeasures);
+			numMeasures++;
+		} 
 
 		&currentMeasure = measureList[measureNum];
 		&currentMeasure.addEvent(subBeatIndex, newEvent);

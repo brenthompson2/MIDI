@@ -27,9 +27,9 @@ const   char    MEASURE_CHAR = 'M';
 
 struct EVENT {
 	string eventName;
-	char data1[BUFF_SIZE];
-	char data2[BUFF_SIZE];
-	char data3[BUFF_SIZE];
+	char data1[10];
+	char data2[10];
+	char data3[10];
 };
 
 struct BEAT {

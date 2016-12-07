@@ -13,19 +13,19 @@
 ////
 /// main program
 //
-void fileReader (char* fileName, MeasureList measureList) {
-    char   buffer[BUFF_SIZE];
-    
-    // try to open the NotMIDI format input file for reading
-    FILE  *inputFile  = fopen (fileName, "r");
-    MeasureList measureList = new MeasureList;
+void fileReader (MeasureList measureList) {
+    char buffer[BUFF_SIZE];
+    char fileName;
+    int temp;
 
+    // try to open the NotMIDI format input file for reading
+    cout<<"What notMIDI file would you like to import?";
+    scanf("%[^\n]", filename);
+    FILE  *inputFile  = fopen (fileName, "r");
     if (!inputFile) {
         cout << "ERROR: Couldn't open input file" << endl;
         exit (1);
     }
-    
-    int temp;
     
     // read each line of the input file and process it
     while ((temp = fscanf (inputFile, "%[^\n]", buffer)) != EOF) {
@@ -91,7 +91,20 @@ void processNote (char buffer[]) {
     processNoteDuration (noteDuration);
     printf ("\n");
 
-    beatsArray.add()
+    EVENT noteOnEvent;
+    noteOnEvent.eventName = "NoteOn";
+    noteOnEvent.data1 = noteName;
+    noteOnEvent.data2 = noteDuration;
+    measureList.addEvent(measureNumber, beatNumber, noteOnEvent)
+
+    EVENT noteOffEvent;
+    noteOffEvent.eventName = "NoteOn";
+    noteOffEvent.data1 = noteName;
+    noteOffEvent.data2 = noteDuration;
+    
+    // put the note off at the right spot
+    measureNumber++;
+    measureList.addEvent(measureNumber, beatNumber, noteOffEvent)
 }
 
 // processTrackCount
@@ -113,9 +126,9 @@ void processMeasureNumber (char buffer[]) {
     // pick apart the pieces of the measure number line
     char    garbage[BUFF_SIZE];
     sscanf (buffer, "%s %u", garbage, &measureNumber);
-    Measure *measure = new Measure;
-    measureList.push_back(measure);
     printf ("\tCurrent measure number is %u\n\n", measureNumber);
+
+    measureList.newMeasure(measureNumber);
 }
 
 // processNoteName
