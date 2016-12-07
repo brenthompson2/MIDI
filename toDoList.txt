@@ -12,3 +12,7 @@
 		- public int numMeasures
 	- indexOfEvent = [(measureNumber * 16) + (mainBeat * 4) + subBeat]
 
+FileReader:
+	- processNote function note off time
+	
+

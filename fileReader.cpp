@@ -101,9 +101,9 @@ void processNote (char buffer[]) {
     noteOffEvent.eventName = "NoteOn";
     noteOffEvent.data1 = noteName;
     noteOffEvent.data2 = noteDuration;
-    
-    // put the note off at the right spot
-    measureNumber++;
+
+    // turn the note off at the right spot
+        measureNumber++;
     measureList.addEvent(measureNumber, beatNumber, noteOffEvent)
 }
 

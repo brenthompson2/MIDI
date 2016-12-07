@@ -21,11 +21,10 @@ main.cpp = basic functions for writing a standard midi file
     including: wb, writeVLQ, writeSMF, writeHeader, etc.
     calls writeTrackEvent from trackMelody.cpp to write individual tracks
 
-channelMessages.cpp = where channel messages are written
-metaEvents.cpp = where metaEvents are written
+events.cpp = where channel messages and metaEvents are written
 MIDIconst.h = creates a bunch of constants that make the MIDI code easier for the human to read and write
 
-trackMelody.cpp = where the measureList will be translated into the MIDI file
+writeTrack.cpp = where the measureList will be translated into the MIDI file
 
 fileReader.cpp = where the notMIDI file will be read into the measureList
 

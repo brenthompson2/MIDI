@@ -63,37 +63,28 @@ struct BEAT {
 
 // *** Track Events ***
 	
-	// writeTrackMelody = writes track events for the melody to the file
-	void writeTrackMelody (unsigned char noteArray[], int lengthArray);
-	void makeMajorScale(unsigned char channel, unsigned char root, unsigned int volume);
 
-	//writeTrackChords
-	void writeTrackChords (unsigned char noteArray[], int lengthArray);
-	void makeMajorChord (unsigned char channel, unsigned char root, unsigned int volume, unsigned int noteLength);
-
-	//writeTrackDrums = write track events for the drums to the file
-	void writeTrackDrums (int lengthArray);
-
-// *** Meta Events ***
-	// metaEndOfTrack = FF 2f 00 = writes end of track to the file
-	void metaEndOfTrack ();
-	
-	// metaSetTempo = FF 51 03 = takes in the three bytes to set the tempo to and writes the event to the file (pg 8)
-	void metaSetTempo (unsigned int a, unsigned int b, unsigned int c);
+// *** EVENTS ***
+	// *** Meta Events ***
+		// metaEndOfTrack = FF 2f 00 = writes end of track to the file
+		void metaEndOfTrack ();
+		
+		// metaSetTempo = FF 51 03 = takes in the three bytes to set the tempo to and writes the event to the file (pg 8)
+		void metaSetTempo (unsigned int a, unsigned int b, unsigned int c);
 
 
-// *** Channel Messages ***
-	// note on = 9channel = turn on note on channel at volume
-	void noteOn (unsigned char channel, unsigned char note, unsigned int volume);
-	
-	// note off = 8channel = turn on note on channel at volume
-	void noteOff (unsigned char channel, unsigned char note, unsigned int volume);
-	
-	// programChange = Cchannel = set instrument of channel to program (pg 10)
-	void programChange (unsigned char channel, unsigned int program);
-	
-	// controlChange = Bchannel = change control of controller to value (pg 10)
-	void controlChange (unsigned char channel, unsigned int controller, unsigned int value);
+	// *** Channel Messages ***
+		// note on = 9channel = turn on note on channel at volume
+		void noteOn (unsigned char channel, unsigned char note, unsigned int volume);
+		
+		// note off = 8channel = turn on note on channel at volume
+		void noteOff (unsigned char channel, unsigned char note, unsigned int volume);
+		
+		// programChange = Cchannel = set instrument of channel to program (pg 10)
+		void programChange (unsigned char channel, unsigned int program);
+		
+		// controlChange = Bchannel = change control of controller to value (pg 10)
+		void controlChange (unsigned char channel, unsigned int controller, unsigned int value);
 
 // *** File Reader ***
 	// function comment here
