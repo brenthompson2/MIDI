@@ -7,6 +7,8 @@
 	//		list of measure objects
 	// indexOfEvent = [(measureNumber * 16) + (mainBeat * 4) + subBeat]
 
+#include "main.h"
+
 // constructor:
 MeasureList::MeasureList(void){
 	
@@ -18,8 +20,8 @@ MeasureList::~MeasureList(){
 
 // Accessors:
 Measure MeasureList::getMeasure(int measureNum){
-	Measure *tempMeasure;
-	&tempMeasure = measureList[measureNum];
+	Measure tempMeasure;
+	tempMeasure = measureList[measureNum];
 	return tempMeasure;
 }
 
@@ -37,13 +39,13 @@ void MeasureList::newMeasure(int measureNum){
 
 // takes in a measureNum, subBeatIndex, and the newEvent
 	// adds it to the measureList at the correct location
-void measureList::addEvent(int measureNum, int subBeatIndex, EVENT newEvent){
+void MeasureList::addEvent(int measureNum, int subBeatIndex, EVENT newEvent){
 	Measure currentMeasure;
 	int numMeasures;
-	numMeasures = measureList.getSize();
+	numMeasures = this->getSize();
 		// if the measure doesn't already exist, make it
 	while (numMeasures < measureNum){
-		measureList.newMeasure(numMeasures);
+		this->newMeasure(numMeasures);
 		numMeasures++;
 	} 
 	currentMeasure = measureList[measureNum];
