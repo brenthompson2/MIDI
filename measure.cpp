@@ -3,26 +3,26 @@
 // 12/7/16
 
 // creates one measure object, 
-	// represented as a measureArray of 15 BEAT elements
+	// represented as a measureArray of 15 Beat elements
 	// Accessors:
 		// getBeat(int subBeatIndex)
 	// Mutators:
-		// addEvent(int subBeatIndex, EVENT newEvent)
+		// addEvent(int subBeatIndex, Event newEvent)
 
 #include "main.h"
 
 // Constructor:
-	Measure::measure(){
-		BEAT beatArray[15];
+	Measure::Measure(){
+		Beat beatArray[15];
 		for (int i = 0; i < 15; i++){
-			beatArray[i] = new Beat();
+			beatArray[i] = new Beat;
 		}
 	}
 
 // Accessors:
-	// returns a pointer to the BEAT at subBeatIndex
-	BEAT *Measure::getBeat(int subBeatIndex){
-		BEAT *currentBeat;
+	// returns a pointer to the Beat at subBeatIndex
+	Beat *Measure::getBeat(int subBeatIndex){
+		Beat *currentBeat;
 
 		&currentBeat = beatArray[subBeatIndex];
 		
@@ -31,8 +31,8 @@
 
 // Mutators:
 	// adds the newEvent to the measure 
-	void Measure::addEvent(int subBeatIndex, EVENT newEvent){
-		BEAT currentBeat;
+	void Measure::addEvent(int subBeatIndex, Event newEvent){
+		Beat currentBeat;
 		int eventIndex;
 
 		currentBeat = beatArray[subBeatIndex];

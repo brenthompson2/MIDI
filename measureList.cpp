@@ -8,8 +8,12 @@
 	// indexOfEvent = [(measureNumber * 16) + (mainBeat * 4) + subBeat]
 
 // constructor:
-MeasureList::measureList(void){
-	Measure measureList<>; // vector
+MeasureList::MeasureList(void){
+
+}
+
+MeasureList::~MeasureList(){
+
 }
 
 // Accessors:
@@ -29,7 +33,7 @@ void MeasureList::newMeasure(int measureNum){
 
 // takes in a measureNum, subBeatIndex, and the newEvent
 	// adds it to the measureList at the correct location
-void measureList::addEvent(int measureNum, int subBeatIndex, EVENT newEvent){
+void measureList::addEvent(int measureNum, int subBeatIndex, Event newEvent){
 	Measure currentMeasure;
 	int numMeasures = measureList.size;
 		// if the measure doesn't already exist, make it

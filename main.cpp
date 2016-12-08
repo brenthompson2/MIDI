@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 		exit(1);
 	}
 	
-	MeasureList measureList = new MeasureList;
+	MeasureList *measureList = new MeasureList;
 
 
 	fileReader(measureList);

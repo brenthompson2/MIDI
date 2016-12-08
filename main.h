@@ -13,10 +13,13 @@
 #define MAXARRAYSIZE 250
 
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <iomanip>
 #include "MIDIconst.h"
 #include <stdio.h>
+#include "measure.h"
+#include "measureList.h"
 using namespace std;
 
 // symbolic constants
@@ -26,17 +29,7 @@ const   char    COMMENT_CHAR = '/';
 const   char    TRACK_COUNT_CHAR = 'N';
 const   char    MEASURE_CHAR = 'M';
 const 	unsigned char SIXTEENTH_DELTA = 0xd0;
-struct EVENT {
-	string eventName;
-	unsigned char data1;
-	unsigned char data2;
-	unsigned char data3;
-};
 
-struct BEAT {
-	int numEvents;
-	EVENT eventList[30];
-};
 
 // *** main.cpp Function Declarations ****
 
@@ -67,7 +60,7 @@ struct BEAT {
 	void writeTrack(MeasureList measureList);
 
 	// takes in an event and writes it to a midi file
-	void processEvent(EVENT currentEvent);
+	void processEvent(Event currentEvent);
 	
 
 // *** events.cpp ***
@@ -101,11 +94,11 @@ struct BEAT {
 	// function comment here
 	void processMeasureNumber (char buffer[]);
 	// function comment here
-	void processNoteName (char buffer[]);
+	int processNoteName (char buffer[]);
 	// function comment here
 	void processNoteDuration (char buffer[]);
 	// function comment here
-	void processBeatNumber (char buffer[]);
+	int processBeatNumber (char buffer[]);
 
 
 #endif

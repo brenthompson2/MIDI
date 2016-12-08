@@ -15,12 +15,12 @@
 //
 void fileReader (MeasureList measureList) {
     char buffer[BUFF_SIZE];
-    char fileName;
+    char* fileName;
     int temp;
 
     // try to open the NotMIDI format input file for reading
     cout<<"What notMIDI file would you like to import?";
-    scanf("%[^\n]", filename);
+    scanf("%[^\n]", fileName);
     FILE  *inputFile  = fopen (fileName, "r");
     if (!inputFile) {
         cout << "ERROR: Couldn't open input file" << endl;
@@ -97,13 +97,13 @@ void processNote(char buffer[]) {
     printf ("\n");
 
     // add the noteOn event to measureList
-    EVENT noteOnEvent;
+    Event noteOnEvent;
     noteOnEvent.eventName = "noteOn";
     noteOnEvent.data1 = noteNumber;
     measureList.addEvent(measureNumber, beatNumber, noteOnEvent)
 
     // add the noteOff event to meaureList
-    EVENT noteOffEvent;
+    Event noteOffEvent;
     noteOffEvent.eventName = "noteOff";
     noteOffEvent.data1 = noteNumber;
     measureList.addEvent(measureNumber, beatNumber, noteOffEvent)
