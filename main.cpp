@@ -19,6 +19,7 @@
 	unsigned int lengthArray;
 	unsigned char division;
 	unsigned int numTracks;
+	MeasureList measureList;
 #endif
 
 int main(int argc, char** argv) {
@@ -36,8 +37,6 @@ int main(int argc, char** argv) {
 		cerr<< "Can't open prog8.mid; aborting..." <<endl;
 		exit(1);
 	}
-	
-	MeasureList measureList = new MeasureList;
 
 
 	fileReader(measureList);

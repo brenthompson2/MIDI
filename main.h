@@ -18,6 +18,7 @@
 #include <iomanip>
 #include "MIDIconst.h"
 #include <stdio.h>
+#include <string.h>
 #include "measure.h"
 #include "measureList.h"
 using namespace std;

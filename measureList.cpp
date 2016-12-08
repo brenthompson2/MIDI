@@ -9,7 +9,7 @@
 
 // constructor:
 MeasureList::MeasureList(void){
-	measureList = new MeasureList;
+	
 }
 
 MeasureList::~MeasureList(){
@@ -19,7 +19,7 @@ MeasureList::~MeasureList(){
 // Accessors:
 Measure MeasureList::getMeasure(int measureNum){
 	Measure *tempMeasure;
-	&tempMeasure = measureList<measureNum>;
+	&tempMeasure = measureList[measureNum];
 	return tempMeasure;
 }
 
