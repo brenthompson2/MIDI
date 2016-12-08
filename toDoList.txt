@@ -18,3 +18,4 @@ FileReader:
 WriteTrack:
 	- in main.h, make SIXTEENTH_DELTA == 1/4th of a beat
 		- relative to main.cpp -> writeHeadChunk -> division and also writeTrack.cpp -> tempo
+	- write noteOffs before noteOns

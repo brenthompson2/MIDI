@@ -16,15 +16,21 @@
 #include <vector>
 #include <fstream>
 #include <iomanip>
-#include "MIDIconst.h"
 #include <stdio.h>
 #include <string.h>
+#include "MIDIconst.h"
 #include "measure.h"
 #include "measureList.h"
 
 using namespace std;
 
-#include "global.h"
+//#include "global.h"
+
+	unsigned long int GCOUNT;
+	ofstream globalOutputFile;
+	//unsigned char division;
+	unsigned int numTracks;
+	MeasureList measureList;
 
 // symbolic constants
 const   unsigned BUFF_SIZE = 200;

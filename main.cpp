@@ -9,9 +9,6 @@
 #include "main.h"
 #include <stdlib.h>
 
-//Global Declarations
-
-
 int main(int argc, char** argv) {
 
 	char* file;
@@ -33,11 +30,10 @@ int main(int argc, char** argv) {
 
 	writeSMF ();	
 	
-	globalInputFile.close();
 	globalOutputFile.close();
 
 	#ifdef DEBUG
-	cout<< "Done with prog7.mid" <<endl;
+	cout<< "Done with prog8.mid" <<endl;
 	#endif
 	
 	//system ("Pause");
@@ -53,30 +49,30 @@ void wb (unsigned value) {
 	GCOUNT++;
 }
 
-// rb = reads values from a file, converts them to notes between C3 and B5,
-	// and puts the notes into an array 
-void rb (){
-	unsigned char value;
+// // rb = reads values from a file, converts them to notes between C3 and B5,
+// 	// and puts the notes into an array 
+// void rb (){
+// 	unsigned char value;
 
-	lengthArray = 0;
-	int i = 0;
+// 	lengthArray = 0;
+// 	int i = 0;
 
 
 
-	while ((i < MAXARRAYSIZE) && (!globalInputFile.eof())){
-		globalInputFile>> hex>> value;
+// 	while ((i < MAXARRAYSIZE) && (!globalInputFile.eof())){
+// 		globalInputFile>> hex>> value;
 
-		#ifdef DEBUG
-		cout<<"\t\tRB = "<< char(value)<<endl;
-		#endif
+// 		#ifdef DEBUG
+// 		cout<<"\t\tRB = "<< char(value)<<endl;
+// 		#endif
 		
-		value = (int(value) % 35) + 48;
+// 		value = (int(value) % 35) + 48;
 
-		noteArray[i] = value;
+// 		noteArray[i] = value;
 
-		lengthArray = i;
-	}
-}
+// 		lengthArray = i;
+// 	}
+// }
 
 // writeEventDeltaTime (numTicks) = takes in a hex value and writes it as a VLQ to the file
 void writeEventDeltaTime (unsigned int numTicks) {

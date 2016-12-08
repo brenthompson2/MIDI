@@ -4,7 +4,7 @@
 
 // Header file for the measureList ADT
 
-#include "main.h"
+//#include "main.h"
 
 #ifndef MEASURE_H
 #define MEASURE_H
