@@ -14,7 +14,7 @@
 ////
 /// main program
 //
-void fileReader (MeasureList measureList) {
+void fileReader () {
     char buffer[BUFF_SIZE];
     char* fileName;
     int temp;
@@ -101,13 +101,13 @@ void processNote(char buffer[]) {
     EVENT noteOnEvent;
     noteOnEvent.eventName = "noteOn";
     noteOnEvent.data1 = noteNumber;
-    measureList.addEvent(measureNumber, beatNumber, noteOnEvent)
+    measureList.addEvent(measureNumber, beatIndex, noteOnEvent);
 
     // add the noteOff event to meaureList
     EVENT noteOffEvent;
     noteOffEvent.eventName = "noteOff";
     noteOffEvent.data1 = noteNumber;
-    measureList.addEvent(measureNumber, beatNumber, noteOffEvent)
+    measureList.addEvent(measureNumber, beatIndexOff, noteOffEvent);
 }
 
 // processTrackCount

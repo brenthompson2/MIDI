@@ -10,17 +10,7 @@
 #include <stdlib.h>
 
 //Global Declarations
-#ifndef GLOBAL
-#define GLOBAL
-	unsigned long int GCOUNT;
-	ofstream globalOutputFile;
-	ifstream globalInputFile;
-	unsigned char noteArray[MAXARRAYSIZE];
-	unsigned int lengthArray;
-	unsigned char division;
-	unsigned int numTracks;
-	MeasureList measureList;
-#endif
+
 
 int main(int argc, char** argv) {
 
@@ -39,7 +29,7 @@ int main(int argc, char** argv) {
 	}
 
 
-	fileReader(measureList);
+	fileReader();
 
 	writeSMF ();	
 	

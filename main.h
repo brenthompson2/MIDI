@@ -21,7 +21,10 @@
 #include <string.h>
 #include "measure.h"
 #include "measureList.h"
+
 using namespace std;
+
+#include "global.h"
 
 // symbolic constants
 const   unsigned BUFF_SIZE = 200;
@@ -87,7 +90,7 @@ const 	unsigned char SIXTEENTH_DELTA = 0xd0;
 
 // *** File Reader ***
 	// takes in a measure list and populates it with the data from the file
-	void fileReader(MeasureList measureList);
+	void fileReader();
 	// function comment here
 	void processNote (char buffer[]);
 	// function comment here
