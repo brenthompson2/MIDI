@@ -60,7 +60,7 @@ const 	unsigned char SIXTEENTH_DELTA = 0xd0;
 	void writeTrack(MeasureList measureList);
 
 	// takes in an event and writes it to a midi file
-	void processEvent(Event currentEvent);
+	void processEvent(EVENT currentEvent);
 	
 
 // *** events.cpp ***
@@ -96,7 +96,7 @@ const 	unsigned char SIXTEENTH_DELTA = 0xd0;
 	// function comment here
 	int processNoteName (char buffer[]);
 	// function comment here
-	void processNoteDuration (char buffer[]);
+	int processNoteDuration (char buffer[]);
 	// function comment here
 	int processBeatNumber (char buffer[]);
 

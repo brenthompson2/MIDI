@@ -6,6 +6,7 @@
 //
 
 #include "main.h"
+#include <stdlib.h>
 
     unsigned trackCount;
     unsigned measureNumber;
@@ -73,7 +74,7 @@ void fileReader (MeasureList measureList) {
 // processNote
 //    process the info for a Note event line and put it in the 
 void processNote(char buffer[]) {
-    int beatIndex;
+    int beatIndex, beatIndexOff;
     unsigned char noteNumber;
 
     #ifdef DEBUG
@@ -93,17 +94,17 @@ void processNote(char buffer[]) {
     noteNumber = processNoteName(noteName);
     
     // and the duration
-    processNoteDuration(noteDuration, beatIndexOff);
+    beatIndexOff = processNoteDuration(noteDuration);
     printf ("\n");
 
     // add the noteOn event to measureList
-    Event noteOnEvent;
+    EVENT noteOnEvent;
     noteOnEvent.eventName = "noteOn";
     noteOnEvent.data1 = noteNumber;
     measureList.addEvent(measureNumber, beatNumber, noteOnEvent)
 
     // add the noteOff event to meaureList
-    Event noteOffEvent;
+    EVENT noteOffEvent;
     noteOffEvent.eventName = "noteOff";
     noteOffEvent.data1 = noteNumber;
     measureList.addEvent(measureNumber, beatNumber, noteOffEvent)
@@ -177,7 +178,7 @@ int processNoteName (char buffer[]) {
     }
 
     // convert all of the data into a note number
-    noteNumber = (letterMultiplier + (noteOctaveNumber * 12))
+    noteNumber = (letterMultiplier + (noteOctaveNumber * 12));
 
     
     #ifdef DEBUG
@@ -198,20 +199,26 @@ int processNoteName (char buffer[]) {
 
 // processNoteDuration
 //    parse the string representation of a note's duration
-void processNoteDuration (char buffer[]) {
+int processNoteDuration (char buffer[]) {
+    int beatIndexOff;
     printf ("     (That's %c", buffer[0]);
     for (int i = 1; i < strlen(buffer); ++i) {
         printf (" and %c", buffer[i]);
     }
     printf (")\n");
+
+    beatIndexOff = 4;
+
+    return beatIndexOff;
 }
 
 // processBeatNumber
 //    split the beat into main and sub and then calculate the beatNumber
 int processBeatNumber (char buffer[]) {
     int beatNumber;
+    unsigned int mainBeat, subBeat;
     sscanf (buffer, "%u.%u", &mainBeat, &subBeat);
-    &beatNumber = ((mainBeat * 4) + subBeat);
+    beatNumber = ((mainBeat * 4) + subBeat);
     return beatNumber;
-    printf ("     (MainBeat %u and subBeat %u is MeasureIndex %d)\n", &mainBeat, &subBeat, &beatNumber);
+    printf ("     (MainBeat %u and subBeat %u is MeasureIndex %d)\n", mainBeat, subBeat, beatNumber);
 }

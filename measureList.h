@@ -13,16 +13,16 @@ using namespace std;
 
 #ifndef BEATEVENT
 #define BEATEVENT
-struct Event {
+struct EVENT {
 	string eventName;
 	unsigned char data1;
 	unsigned char data2;
 	unsigned char data3;
 };
 
-struct Beat {
+struct BEAT {
 	int numEvents;
-	Event eventList[30];
+	EVENT eventList[30];
 };
 #endif
 
@@ -37,6 +37,7 @@ public:
 
 // Accessors:
 	Measure getMeasure(int measureNum);
+	int getSize();
 
 // Mutators:
 
@@ -44,8 +45,8 @@ public:
 	void newMeasure(int measureNum);
 
 	// takes in a measureNum, subBeatIndex, and the newEvent
-		// adds the Event to the measureList at the correct location
-	void addEvent(int measureNum, int subBeatIndex, Event newEvent);
+		// adds the EVENT to the measureList at the correct location
+	void addEvent(int measureNum, int subBeatIndex, EVENT newEvent);
 
 private:
 	vector<Measure> measureList;

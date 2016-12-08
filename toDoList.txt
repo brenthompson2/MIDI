@@ -1,6 +1,8 @@
 **** Current Status ****
 12/7/16 
 
+Main Problem: passing the structs and classes between files
+
 measure.cpp:
 	- deconstructor?
 

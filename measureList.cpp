@@ -9,7 +9,7 @@
 
 // constructor:
 MeasureList::MeasureList(void){
-
+	measureList = new MeasureList;
 }
 
 MeasureList::~MeasureList(){
@@ -23,19 +23,24 @@ Measure MeasureList::getMeasure(int measureNum){
 	return tempMeasure;
 }
 
+int MeasureList::getSize(){
+	return measureList.size();
+}
+
 // Mutators:
 
 // create a new measure at the measureNum
 void MeasureList::newMeasure(int measureNum){
-	Measure *tempMeasure;
+	Measure tempMeasure;
 	measureList.push_back(tempMeasure);
 }
 
 // takes in a measureNum, subBeatIndex, and the newEvent
 	// adds it to the measureList at the correct location
-void measureList::addEvent(int measureNum, int subBeatIndex, Event newEvent){
+void measureList::addEvent(int measureNum, int subBeatIndex, EVENT newEvent){
 	Measure currentMeasure;
-	int numMeasures = measureList.size;
+	int numMeasures;
+	numMeasures = measureList.getSize();
 		// if the measure doesn't already exist, make it
 	while (numMeasures < measureNum){
 		measureList.newMeasure(numMeasures);

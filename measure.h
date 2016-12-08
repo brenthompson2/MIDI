@@ -13,16 +13,16 @@ using namespace std;
 
 #ifndef BEATEVENT
 #define BEATEVENT
-struct Event {
+struct EVENT {
 	string eventName;
 	unsigned char data1;
 	unsigned char data2;
 	unsigned char data3;
 };
 
-struct Beat {
+struct BEAT {
 	int numEvents;
-	Event eventList[30];
+	EVENT eventList[30];
 };
 #endif
 
@@ -33,16 +33,16 @@ public:
 	Measure(void);
 
 // Accessors:
-	// returns a pointer to the Beat at beatIndex
-	Beat getBeat(int beatIndex);
+	// returns the BEAT at beatIndex
+	BEAT getBeat(int beatIndex);
 
 // Mutators:
 
 	// adds the newEvent to the measure at beatIndex
-	void addEvent(int beatIndex, Event newEvent);
+	void addEvent(int beatIndex, EVENT newEvent);
 
 private:
-	Beat beatArray[16];
+	BEAT beatArray[16];
 };
 
 #endif

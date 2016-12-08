@@ -7,6 +7,7 @@
 //  page numbers reference Standard MIDI-File Format Spec. 1.1, updated
 
 #include "main.h"
+#include <stdlib.h>
 
 //Global Declarations
 #ifndef GLOBAL
@@ -36,7 +37,7 @@ int main(int argc, char** argv) {
 		exit(1);
 	}
 	
-	MeasureList *measureList = new MeasureList;
+	MeasureList measureList = new MeasureList;
 
 
 	fileReader(measureList);

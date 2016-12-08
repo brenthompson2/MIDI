@@ -21,17 +21,19 @@ void writeTrack (MeasureList measureList) {
 
 	// Set Instrument: 00 c0 0b = at delta 0 - set program of channel 1 - to program decimal 1, the Basic Piano
 		writeEventDeltaTime (0x00); // time = 0
-		programChange(0x00);
+		programChange(0x00, 0x00);
 
 	// Write measureList to MIDI file
 	// for every MEASURE in the song
-	for (measureCounter; measureCounter < measureList.size(); measureCounter++){
-		int currentMeasure = measureList.getMeasure(measureCounter);
+	for (measureCounter; measureCounter < measureList.getSize(); measureCounter++){
+		Measure currentMeasure;
+		currentMeasure = measureList.getMeasure(measureCounter);
 		int beatCounter = 0;
 
 		// for every BEAT in the measure
 		for (beatCounter; beatCounter < 16; beatCounter++){
-			BEAT curentBeat = currentMeasure.getBeat(beatCounter);
+			BEAT curentBeat;
+			curentBeat = currentMeasure.getBeat(beatCounter);
 			int eventCounter = 0;
 			// imaginary noteOn event to make all deltaTimes for rest of BEAT 0
 			writeEventDeltaTime(SIXTEENTH_DELTA);
@@ -39,7 +41,8 @@ void writeTrack (MeasureList measureList) {
 
 			// for every EVENT in the BEAT
 			for (eventCounter; eventCounter < curentBeat.numEvents; eventCounter++){
-				EVENT currentEvent = curentBeat.eventList[eventCounter];
+				EVENT currentEvent;
+				currentEvent = curentBeat.eventList[eventCounter];
 				processEvent(currentEvent);
 			}
 		}
